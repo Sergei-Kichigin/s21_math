@@ -4,6 +4,7 @@
 #include "../s21_math.h"
 #define NA printf("n/a\n")
 
+
 int main() {
   double input1 = 12345, input2;
   long i = 1;
