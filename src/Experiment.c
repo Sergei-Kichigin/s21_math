@@ -21,7 +21,7 @@ int main() {
 
 long double bin_pow(long double base, long double p) {
   if (p == 0) {
-    return 1;  //Выход из рекурсии.
+    return 1;  // Выход из рекурсии.
   }
   if (p > 0) {
     if (p == (long long)p && (long long)p % 2 == 0) {
