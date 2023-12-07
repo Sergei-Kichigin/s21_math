@@ -1,8 +1,9 @@
 
 #include "s21_pow.h"
-//original POW makes difference between either it gets integers or doubles... we do not do this difference. I wonder if we should...
-//5^2 => math.h=25.0000000000000000 s21_math.h=25.0000000000000065
-long double s21_pow(double base, double p) {  
+// original POW makes difference between either it gets integers or doubles...
+// we do not do this difference. I wonder if we should... 5^2 =>
+// math.h=25.0000000000000000 s21_math.h=25.0000000000000065
+long double s21_pow(double base, double p) {
   long double result;
   if (base > 0)
     result = s21_pow_calculation(base, p);

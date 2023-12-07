@@ -4,14 +4,14 @@
 #include "../s21_math.h"
 #define NA printf("n/a\n")
 
-
 int main() {
   double input1 = 12345, input2;
   long i = 1;
   for (int j = 10; input1 != 54321 && i != 54321; j++) {
-    if (j % 10 == 0||input1 == 12345)
+    if (j % 10 == 0 || input1 == 12345)
       printf(
-          "1-ln; 2-exp; 3-pow; 4-floor; 5-ceil; 6-abs; 7-fabs;\n 54321-exit; "
+          "1-ln; 2-exp; 3-pow; 4-floor; 5-ceil; 6-abs; 7-fabs; 8-cos\n "
+          "54321-exit; "
           "12345-change function\n");
     if (input1 == 12345) scanf("%ld", &i);
     switch (i) {
@@ -54,13 +54,15 @@ int main() {
         break;
       case 7:
         scanf("%lf", &input1);
+        if (input1 == 12345 || input1 == 54321) continue;
         printf("%.16lf\n", fabs(input1));
         printf("%.16Lf\n\n", s21_fabs(input1));
         break;
       case 8:
-        // scanf("%lf", &input1);
-        // printf("%.16lf\n", (input1));
-        break;
+        scanf("%lf", &input1);
+        if (input1 == 12345 || input1 == 54321) continue;
+        printf("%.16lf\n", cos(input1));
+        printf("%.16Lf\n\n", s21_cos(input1));
       case 9:
         // scanf("%lf", &input);
         // printf("%.16lf\n", log(input));

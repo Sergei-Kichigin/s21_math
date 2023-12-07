@@ -1,8 +1,10 @@
 CC=gcc
 CFLAGS= -std=c11 -Wall -Werror -Wextra -c
-OFLAG= -lm -o
+OFLAG= -o
+LMFLAG=-lm 
 DFLAG= -D_POSIX_C_SOURCE=200809L
-#SRCCOS=../src/cos/s21_cos
+SRCCOS=cos/
+COS=s21_cos
 SRCLN=ln/
 LN=s21_ln
 SRCAFACFL=abs_fabs_ceil_floor/
@@ -21,15 +23,15 @@ CP=cp
 # all: s21_math.h  #need to remember how mo make libs
 # s21_math.h: 
 
-test_riderkri:  clang_all $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(TESTS).o #s21_cos.o s21_factorial.o
-	$(CC) $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(TESTS).o $(OFLAG) $(TESTS)
+test_riderkri: clang_all $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(TESTS).o $(COS).o #s21_factorial.o
+	$(CC) $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(TESTS).o $(COS).o $(LMFLAG) $(OFLAG) $(TESTS)
 	rm -f *.o
 
 $(TESTS).o: $(SRCTESTS)$(TESTS).c
 	$(CC) $(CFLAGS) $(DFLAG) $(SRCTESTS)$(TESTS).c
 
-# s21_cos.o: $(SRCCOS).c  $(SRCCOS).h
-# 	$(CC) $(CFLAGS) $(DFLAG)  $(SRCCOS).c  $(SRCCOS).h
+$(COS).o: $(SRCCOS)$(COS).c  $(SRCCOS)$(COS).h
+	$(CC) $(CFLAGS) $(DFLAG)  $(SRCCOS)$(COS).c  $(SRCCOS)$(COS).h
 
 $(LN).o: $(SRCLN)$(LN).c $(SRCLN)$(LN).h
 	$(CC) $(CFLAGS) $(DFLAG) $(SRCLN)$(LN).c $(SRCLN)$(LN).h

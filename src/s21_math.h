@@ -1,5 +1,5 @@
-#include "ln/s21_ln.h"
-// #include "cos/s21_cos.h"
 #include "abs_fabs_ceil_floor/s21_abs_fabs_ceil_floor.h"
+#include "cos/s21_cos.h"
 #include "exp/s21_exp.h"
+#include "ln/s21_ln.h"
 #include "pow/s21_pow.h"

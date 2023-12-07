@@ -4,12 +4,11 @@
 #include "../s21_math.h"
 #define NA printf("n/a\n")
 
-
 int main() {
   double input1 = 12345, input2;
   long i = 1;
   for (int j = 10; input1 != 54321 && i != 54321; j++) {
-    if (j % 10 == 0||input1 == 12345)
+    if (j % 10 == 0 || input1 == 12345)
       printf(
           "1-ln; 2-exp; 3-pow; 4-floor; 5-ceil; 6-abs; 7-fabs;\n 54321-exit; "
           "12345-change function\n");
