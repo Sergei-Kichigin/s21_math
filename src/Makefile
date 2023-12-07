@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS= -std=c11 -Wall -Werror -Wextra -c
 OFLAG= -lm -o
-DFLAG= -D_POSIX_C_SOURCE=200809L
+DFLAG= -D_POSIX_C_SOURCE 200809L
 #SRCCOS=../src/cos/s21_cos
 SRCLN=ln/
 LN=s21_ln
@@ -14,7 +14,7 @@ EXP=s21_exp
 #SRCFACT=fact/s21_factorial
 SRCTESTS=tests/
 TESTS=s21_test_riderkri
-CL=../materials/linters/.clang-format
+CL=../materials/linters/.
 CF=clang-format
 MATH=s21_math.h
 CP=cp
@@ -89,9 +89,9 @@ clear_o:
 	rm -f $(SRCEXP)*.gch
 	rm -f $(SRCAFACFL)*.gch 
 	rm -f $(SRCPOW)*.gch
-	# rm -f $(SRCTESTS)*.gch
+	rm -f $(SRCTESTS)*.gch
 	# rm -f $(SRCFACT)*.gch
-	# rm -f *.gch
+	rm -f *.gch
 
 
 clear_test: clear_o
