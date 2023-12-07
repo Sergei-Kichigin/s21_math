@@ -1,14 +1,12 @@
 #include <math.h>
 #include <stdio.h>
-#define NA printf("n/a")
 
-// #include "cos/s21_cos.h"
-#include "exp/s21_exp.h"
+#include "ln/s21_ln.h"
 
 int main() {
   double input;
 
   scanf("%lf", &input);
-  printf("%Lf--", exp_my(input));
-  printf("%lf", exp(input));
+  printf("%Lf--", ln_my(input));
+  printf("%lf", log(input));
 }

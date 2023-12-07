@@ -1,8 +1,8 @@
 CC=gcc
 CFLAGS= -std=c11 -Wall -Werror -Wextra -c
-OFLAG= -o
+OFLAG= -lm -o
 SRCCOS=../src/cos/
-SRCEXP=../src/exp/
+SRCLN=../src/ln/
 SRCFACT=../src/fact/
 CL=../materials/linters/.clang-format
 CP=cp
@@ -10,8 +10,8 @@ CP=cp
 # all: s21_math.h  #need to remember how mo make libs
 # s21_math.h: 
 
-test_riderkri:  clang_all s21_exp.o s21_factorial.o test_riderkri.o s21_math.o #s21_cos.o  
-	$(CC) s21_factorial.o s21_exp.o test_riderkri.o s21_math.o -lm $(OFLAG) test_riderkri 
+test_riderkri:  clang_all s21_ln.o s21_factorial.o test_riderkri.o s21_math.o #s21_cos.o  
+	$(CC) s21_factorial.o s21_ln.o test_riderkri.o s21_math.o $(OFLAG) test_riderkri 
 
 test_riderkri.o: test_riderkri.c
 	$(CC) $(CFLAGS) test_riderkri.c 
@@ -19,8 +19,8 @@ test_riderkri.o: test_riderkri.c
 s21_cos.o: $(SRCCOS)s21_cos.c $(SRCCOS)s21_cos.h
 	$(CC) $(CFLAGS) $(SRCCOS)s21_cos.c $(SRCCOS)s21_cos.h
 
-s21_exp.o: $(SRCEXP)s21_exp.c $(SRCEXP)s21_exp.h
-	$(CC) $(CFLAGS) $(SRCEXP)s21_exp.c $(SRCEXP)s21_exp.h
+s21_ln.o: $(SRCLN)s21_ln.c $(SRCLN)s21_ln.h
+	$(CC) $(CFLAGS) $(SRCLN)s21_ln.c $(SRCLN)s21_ln.h
 
 s21_math.o: s21_math.c s21_math.h
 	$(CC) $(CFLAGS) s21_math.c s21_math.h

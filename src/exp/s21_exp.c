@@ -16,10 +16,11 @@
 //   return res;
 // }
 
-long double exp_my(double x) {
-  return (long double)pow(E50, x) / pow((long double)MOVE, x);
-}
+// long double exp_my(double x) {
+//   return (long double)pow(E50, x) / pow((long double)MOVE, x);
+// }
 
+long double exp_my(double x) { return (long double)pow(Emathh, x); }
 // long double exp_my(double x) {
 //   x--;
 //   if (x == 0)
