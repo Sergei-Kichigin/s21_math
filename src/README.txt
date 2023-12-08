@@ -41,6 +41,7 @@ LIST OF GOALS:
 2.9999999999999996
 
 sum: problem with calculation of EXP due to the fact that the ROW grows from bottom to the number.
+sol?: make 2 functions for big and small number - small numbers work with constan, not ROW
 
 ** BUG log:
 0.1 0.5
