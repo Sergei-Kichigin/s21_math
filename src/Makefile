@@ -3,14 +3,14 @@ CFLAGS= -std=c11 -Wall -Werror -Wextra -c
 OFLAG= -o
 LMFLAG=-lm 
 DFLAG= -D_POSIX_C_SOURCE=200809L
-SRCCOS=cos/
-COS=s21_cos
+SRCCOS=trigonometry/
+COS=s21_cos_sin_tan
 SRCLN=ln/
 LN=s21_ln
 SRCAFACFL=abs_fabs_ceil_floor/
 AFACFL=s21_abs_fabs_ceil_floor
-SRCPOW=pow/
-POW=s21_pow
+SRCPOW=pow_sqrt/
+POW=s21_pow_sqrt
 SRCEXP=exp/
 EXP=s21_exp
 #SRCFACT=fact/s21_factorial
@@ -57,7 +57,7 @@ clang_all:
 	$(CP) $(CL) $(SRCAFACFL).$(CF)
 	$(CP) $(CL) $(SRCTESTS).$(CF)
 	$(CP) $(CL) $(SRCFACT).$(CF)
-	# $(CF) -i *.c
+# $(CF) -i *.c
 	$(CF) -i *.h
 	$(CF) -i $(SRCLN)*.c
 	$(CF) -i $(SRCLN)*.h
@@ -72,7 +72,7 @@ clang_all:
 	$(CF) -i $(SRCAFACFL)*.c
 	$(CF) -i $(SRCAFACFL)*.h
 	$(CF) -i $(SRCTESTS)*.c
-	# $(CF) -i $(SRCTESTS)*.h
+# $(CF) -i $(SRCTESTS)*.h
 	rm -f .$(CF)
 	rm -f $(SRCLN).$(CF)
 	rm -f $(SRCCOS).$(CF)
@@ -86,14 +86,14 @@ clear_test: clear_o clear_test
 
 clear_o:
 	rm -f *.o
-	#rm -f $(SRCCOS)*.gch
+	rm -f $(SRCCOS)*.gch
 	rm -f $(SRCLN)*.gch
 	rm -f $(SRCEXP)*.gch
 	rm -f $(SRCAFACFL)*.gch 
 	rm -f $(SRCPOW)*.gch
-	# rm -f $(SRCTESTS)*.gch
-	# rm -f $(SRCFACT)*.gch
-	# rm -f *.gch
+# rm -f $(SRCTESTS)*.gch
+# rm -f $(SRCFACT)*.gch
+	rm -f *.gch
 
 
 clear_test: clear_o
