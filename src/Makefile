@@ -13,6 +13,8 @@ SRCPOW=pow_sqrt/
 POW=s21_pow_sqrt
 SRCEXP=exp/
 EXP=s21_exp
+SRCFMOD=fmod/
+FMOD=s21_fmod
 #SRCFACT=fact/s21_factorial
 SRCTESTS=tests/
 TESTS=s21_test_riderkri
@@ -23,8 +25,8 @@ CP=cp
 # all: s21_math.h  #need to remember how mo make libs
 # s21_math.h: 
 
-test_riderkri: clang_all $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(TESTS).o $(COS).o #s21_factorial.o
-	$(CC) $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(TESTS).o $(COS).o $(LMFLAG) $(OFLAG) $(TESTS)
+test_riderkri: clang_all $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(TESTS).o $(COS).o $(FMOD).o #s21_factorial.o
+	$(CC) $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(TESTS).o $(COS).o $(FMOD).o $(LMFLAG) $(OFLAG) $(TESTS)
 	rm -f *.o
 
 $(TESTS).o: $(SRCTESTS)$(TESTS).c
@@ -44,7 +46,10 @@ $(POW).o: $(SRCPOW)$(POW).c $(SRCPOW)$(POW).h
 
 $(EXP).o: $(SRCEXP)$(EXP).c $(SRCEXP)$(EXP).h
 	$(CC) $(CFLAGS) $(DFLAG) $(SRCEXP)$(EXP).c $(SRCEXP)$(EXP).h
-	
+
+$(FMOD).o: $(SRCFMOD)$(FMOD).c $(SRCFMOD)$(FMOD).h
+	$(CC) $(CFLAGS) $(DFLAG) $(SRCFMOD)$(FMOD).c $(SRCFMOD)$(FMOD).h
+
 # s21_factorial.o: $(SRCFACT).c $(SRCFACT).h
 # 	$(CC) $(CFLAGS) $(DFLAG) $(SRCFACT).c $(SRCFACT).h 
 
@@ -53,6 +58,7 @@ clang_all:
 	$(CP) $(CL) $(SRCLN).$(CF)
 	$(CP) $(CL) $(SRCCOS).$(CF)
 	$(CP) $(CL) $(SRCEXP).$(CF)
+	$(CP) $(CL) $(SRCFMOD).$(CF)
 	$(CP) $(CL) $(SRCPOW).$(CF)
 	$(CP) $(CL) $(SRCAFACFL).$(CF)
 	$(CP) $(CL) $(SRCTESTS).$(CF)
@@ -65,6 +71,8 @@ clang_all:
 	$(CF) -i $(SRCCOS)*.h
 	$(CF) -i $(SRCEXP)*.c
 	$(CF) -i $(SRCEXP)*.h
+	$(CF) -i $(SRCFMOD)*.c
+	$(CF) -i $(SRCFMOD)*.h
 	$(CF) -i $(SRCFACT)*.c
 	$(CF) -i $(SRCFACT)*.h
 	$(CF) -i $(SRCPOW)*.c
@@ -77,6 +85,7 @@ clang_all:
 	rm -f $(SRCLN).$(CF)
 	rm -f $(SRCCOS).$(CF)
 	rm -f $(SRCEXP).$(CF)
+	rm -f $(SRCFMOD).$(CF)
 	rm -f $(SRCPOW).$(CF)
 	rm -f $(SRCAFACFL).$(CF)
 	rm -f $(SRCTESTS).$(CF)
@@ -89,6 +98,7 @@ clear_o:
 	rm -f $(SRCCOS)*.gch
 	rm -f $(SRCLN)*.gch
 	rm -f $(SRCEXP)*.gch
+	rm -f $(SRCFMOD)*.gch
 	rm -f $(SRCAFACFL)*.gch 
 	rm -f $(SRCPOW)*.gch
 # rm -f $(SRCTESTS)*.gch
