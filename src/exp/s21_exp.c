@@ -1,19 +1,21 @@
 #include "s21_exp.h"
 
 long double s21_exp(double x) {
-  double i = 0;
+  // double i = 0;
   long double res;
   if (x == (long int)x)
     res = s21_pow_int(Emathh, x);
   else {
-    if (x >= 0)
-      for (; i <= x; i++)
-        ;
-    else
-      for (; i >= x; i--)
-        ;
-    res = s21_pow_int(Emathh, i);
-    res = res * s21_exp_double(x - i);
+    // if (x >= 0)
+    //   for (; i <= x; i++)
+    //     ;
+    // else
+    //   for (; i >= x; i--)
+    //     ;
+    // res = s21_pow_int(Emathh, i);
+    // res = res * s21_exp_double(x - i);
+    res = s21_pow_int(Emathh, (long int)x);
+    res *= s21_exp_double(x - (long int)x);
   }
   return res;
 }

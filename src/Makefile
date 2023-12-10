@@ -25,9 +25,11 @@ CP=cp
 # all: s21_math.h  #need to remember how mo make libs
 # s21_math.h: 
 
-test_riderkri: clang_all $(AFACFL).o $(EXP).o $(POW).o $(LN).o $(TESTS).o $(COS).o $(FMOD).o #s21_factorial.o
-	$(CC) $(AFACFL).o $(EXP).o $(POW).o  $(LN).o $(TESTS).o $(COS).o $(FMOD).o $(LMFLAG) $(OFLAG) $(TESTS)
+test_riderkri: clang_all $(AFACFL).o $(EXP).o $(LN).o $(POW).o $(TESTS).o $(COS).o $(FMOD).o #s21_factorial.o
+	$(CC) $(AFACFL).o $(EXP).o $(LN).o $(POW).o $(TESTS).o $(COS).o $(FMOD).o $(LMFLAG) $(OFLAG) $(TESTS)
 	rm -f *.o
+	rm -f *.gch
+	rm -f */*gch
 
 $(TESTS).o: $(SRCTESTS)$(TESTS).c
 	$(CC) $(CFLAGS) $(DFLAG) $(SRCTESTS)$(TESTS).c

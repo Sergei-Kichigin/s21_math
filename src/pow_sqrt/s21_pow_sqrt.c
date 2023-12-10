@@ -62,3 +62,13 @@ long double s21_pow_calculation(double base, double p) {
 }
 
 long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
+
+// long double not_a_crutch(long double x) {
+//   long int temp;
+//   temp = x * 1000000000;
+
+//   if ((x - (double)temp) * 10 >= 5)
+//     return x + 0.000000001;
+//   else
+//     return x;
+// }

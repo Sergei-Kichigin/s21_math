@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include "abs_fabs_ceil_floor/s21_abs_fabs_ceil_floor.h"
 #include "exp/s21_exp.h"
 #include "fmod/s21_fmod.h"

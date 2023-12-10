@@ -1,11 +1,13 @@
-#include <stdio.h>
+#ifndef EXP
+#define EXP
 
-#include "../pow_sqrt/s21_pow_sqrt.h"
+#ifndef CONST
+#include "../constants.h"
+#endif
 
-#define EPSilon 1E-18
-#define ONE 1.0
-#define MINUS (-1.0)
-#define Emathh 2.7182818284590450907955982984276488423347473144531250
+long double s21_pow_int(long double base, long double p);  // is it working?
 
 long double s21_exp(double x);
 long double s21_exp_double(double x);
+
+#endif

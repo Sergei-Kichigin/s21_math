@@ -14,9 +14,9 @@ LIST OF GOALS:
 | 10 | `long double fmod(double x, double y)` | остаток операции деления с плавающей точкой | DONE | NOT CHECKED
 | 11 | `long double log(double x)` | вычисляет натуральный логарифм | DONE | NOT CHECKED
 | 12 | `long double pow(double base, double exp)` | возводит число в заданную степень | DONE | NOT CHECKED   +(small numbers like 0.0000000000009 doesn't work (with rational powers at least (ex. 0.5)) I wonder where is the edge  - BUG**)
-Гоша------| 13 | `long double sin(double x)` | вычисляет синус |
+| 13 | `long double sin(double x)` | вычисляет синус |
 | 14 | `long double sqrt(double x)` | вычисляет квадратный корень | DONE | BUG FOUND*
-Гоша------| 15 | `long double tan(double x)` | вычисляет тангенс |  
+| 15 | `long double tan(double x)` | вычисляет тангенс |  
 Сергей----gcov_report
 Unit-тесты
 Решить про объединения функций
