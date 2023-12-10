@@ -77,8 +77,8 @@ int main() {
         break;
       case 11:
         scanf("%lf", &input1);
-        scanf("%lf", &input2);
         if (input1 == 12345 || input1 == 54321) continue;
+        scanf("%lf", &input2);
         printf("%.16lf\n", fmod(input1, input2));
         printf("%.16Lf\n\n", s21_fmod(input1, input2));
         break;

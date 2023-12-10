@@ -52,3 +52,5 @@ Mkfile.old
 dkms.conf
 .vscode/settings.json
 src/s21_test_riderkri
+README_RUS.md
+../README_RUS.md

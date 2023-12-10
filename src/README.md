@@ -11,8 +11,8 @@ LIST OF GOALS:
 | 7 | `long double exp(double x)` | возвращает значение e, возведенное в заданную степень | DONE | BUG FOUND
 | 8 | `long double fabs(double x)` | вычисляет абсолютное значение числа с плавающей точкой | DONE | CHECKED
 | 9 | `long double floor(double x)` | возвращает ближайшее целое число, не превышающее заданное значение | DONE | NOT CHECKED
-Тимофей---| 10 | `long double fmod(double x, double y)` | остаток операции деления с плавающей точкой | NOT DONE | NOT CHECKED
-Лера------| 11 | `long double log(double x)` | вычисляет натуральный логарифм | DONE | BUG FOUND   +(need to check near EXP(1))
+| 10 | `long double fmod(double x, double y)` | остаток операции деления с плавающей точкой | DONE | NOT CHECKED
+| 11 | `long double log(double x)` | вычисляет натуральный логарифм | DONE | NOT CHECKED
 | 12 | `long double pow(double base, double exp)` | возводит число в заданную степень | DONE | NOT CHECKED   +(small numbers like 0.0000000000009 doesn't work (with rational powers at least (ex. 0.5)) I wonder where is the edge  - BUG**)
 Гоша------| 13 | `long double sin(double x)` | вычисляет синус |
 | 14 | `long double sqrt(double x)` | вычисляет квадратный корень | DONE | BUG FOUND*

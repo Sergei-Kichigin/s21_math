@@ -52,7 +52,13 @@ long double s21_pow_double(double base, double p) {
 }
 
 long double s21_pow_calculation(double base, double p) {
-  return s21_exp(p * s21_log(base));
+  double i = 0;
+  for (; i <= p; i++)
+    ;
+  long double res = s21_pow_int(base, i);
+  res = res * s21_exp((p - i) * s21_log(base));
+  return res;
+  // return s21_exp(p * s21_log(base));
 }
 
 long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
