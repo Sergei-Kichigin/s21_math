@@ -1,7 +1,5 @@
 #include "s21_ln.h"
 
-#include <stdio.h>
-
 // long double s21_log(double x) {
 //   if (x < 0) return NaN;
 //   if (x == 0) return InF;
