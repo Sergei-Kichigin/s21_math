@@ -1,4 +1,3 @@
-
 #include "s21_pow_sqrt.h"
 
 // bug with EXP and LOG calculation effects this function
@@ -56,12 +55,12 @@ long double s21_pow_calculation(double base, double p) {
   for (; i <= p; i++)
     ;
   long double res = s21_pow_int(base, i);
-  res = res * s21_exp_double((p - i) * s21_log(base));
+  res = res * s21_exp((p - i) * s21_log(base));
   return res;
   // return s21_exp(p * s21_log(base));
 }
 
-long double s21_sqrt(double base) { return s21_pow(base, SQRT); }
+long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
 
 // long double not_a_crutch(long double x) {
 //   long int temp;

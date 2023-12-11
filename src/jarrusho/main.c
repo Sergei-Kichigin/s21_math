@@ -9,15 +9,17 @@
 int main() {
   double x;
   scanf("%lf", &x);
-  // double y;
-  // scanf("%lf", &y);
-  // printf("%.16Lf", s21_pow(x, y));
-  // printf("\n%.16lf", pow(x, y));
-  printf("%.16Lf", s21_log(x));
-  printf("\n%.16lf", log(x));
+
+  double y;
+  scanf("%lf", &y);
+
+  printf("%.16Lf", s21_pow(x, y));
+  printf("\n%.16lf", pow(x, y));
+
   // printf("%.16Lf", s21_log(x));
   // printf("\n%.16lf", log(x));
-  //  printf("%Lf", s21_exp(x));
-  //  printf("\n%lf", exp(x));
+
+  // printf("%.16Lf", s21_exp(x));
+  // printf("\n%.16lf", exp(x));
   return 0;
 }

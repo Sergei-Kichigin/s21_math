@@ -1,5 +1,6 @@
 #include "s21_ln.h"
 
+#include "s21_exp.h"
 // long double s21_log(double x) {
 //   if (x < 0) return NaN;
 //   if (x == 0) return InF;
@@ -16,14 +17,14 @@
 // }
 
 long double s21_log(double x) {
-  long double U_n_1, U_n = 0;
+  long double U_n_1 = 0, U_n = 0;
   if (x < 0 || x == InF) U_n = NaN;
   if (x == 0) U_n = InF;
   if (x == -InF) U_n = x;
   if (U_n == 0) {
     long double power = 0;
     for (; x > ONE; power++) {
-      x = x / s21_exp(1);
+      x = x / s21_exp(1.0);
     }  // Emathh
     U_n = x - 1;
     while (s21_fabs(U_n - U_n_1) > EPSilon2) {
@@ -34,6 +35,7 @@ long double s21_log(double x) {
   }
   return U_n;
 }
+
 //((U_n - U_n_1) >= 0 ? (U_n - U_n_1) : -(U_n - U_n_1)) > EPSilon2
 //((x - s21_exp(U_n)) >= 0 ? (x - s21_exp(U_n)) : -(x - s21_exp(U_n))) >
 // EPSilon2
