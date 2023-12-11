@@ -11,7 +11,8 @@ int main() {
     if (j % 10 == 0 || input1 == 12345)
       printf(
           "1-ln; 2-exp; 3-pow; 4-floor; 5-ceil; 6-abs; 7-fabs; 8-cos; 9-sqrt; "
-          "10-sin; 54321-exit; 12345-change function\n");
+          "10-sin; 11-acos; 12-asin; 13-atan; 54321-exit; 12345-change "
+          "function\n");
     if (input1 == 12345) scanf("%ld", &i);
     switch (i) {
       case 1:
@@ -74,6 +75,24 @@ int main() {
         if (input1 == 12345 || input1 == 54321) continue;
         printf("%.16lf\n", sin(input1));
         printf("%.16Lf\n\n", s21_sin(input1));
+        break;
+      case 11:
+        scanf("%lf", &input1);
+        if (input1 == 12345 || input1 == 54321) continue;
+        printf("%.16lf\n", acos(input1));
+        printf("%.16Lf\n\n", s21_acos(input1));
+        break;
+      case 12:
+        scanf("%lf", &input1);
+        if (input1 == 12345 || input1 == 54321) continue;
+        printf("%.16lf\n", asin(input1));
+        printf("%.16Lf\n\n", s21_asin(input1));
+        break;
+      case 13:
+        scanf("%lf", &input1);
+        if (input1 == 12345 || input1 == 54321) continue;
+        printf("%.16lf\n", atan(input1));
+        printf("%.16Lf\n\n", s21_atan(input1));
         break;
       case 54321:
         break;
