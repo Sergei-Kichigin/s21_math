@@ -1,9 +1,10 @@
 #ifndef FMOD
 #define FMOD
 
-#ifndef CONST
+#include "../abs_fabs_ceil_floor/s21_abs_fabs_ceil_floor.h"
 #include "../constants.h"
-#endif
 
 long double s21_fmod(double x, double y);
+long double s21_truncate(double x);
+long double s21_fma(long double x, long double y, long double z);
 #endif
