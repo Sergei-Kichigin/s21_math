@@ -1,6 +1,7 @@
-#include "s21_math.h"
 #include <check.h>
 #include <math.h>
+
+#include "s21_math.h"
 
 START_TEST(abs_positive) {
   int input = 5;
