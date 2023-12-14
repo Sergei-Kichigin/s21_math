@@ -6,6 +6,7 @@
 
 #define ONE 1.0
 #define ZERO 0.0
+#define TWO 2.0
 #define MINUS (-1.0)
 #define SQRT 0.5
 

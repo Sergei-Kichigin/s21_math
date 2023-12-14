@@ -1,10 +1,6 @@
 #ifndef LN
 #define LN
 
-#ifndef S21_AFACFL
-#include "../abs_fabs_ceil_floor/s21_abs_fabs_ceil_floor.h"
-#endif
-
 #ifdef EXP
 #include "../exp/s21_exp.h"
 #endif

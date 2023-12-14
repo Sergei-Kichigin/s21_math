@@ -1,11 +1,6 @@
 
 #include "s21_pow_sqrt.h"
 
-// bug with EXP and LOG calculation effects this function
-// try 25 0.5, you will get 4.99999999999998 and that is fucked up
-// same goes with 27 0.3333333333333 and so on
-// btw it effects SQRT too
-
 long double s21_pow(double base, double p) {
   if (p == (long int)p)
     return s21_pow_int(base, p);
@@ -39,7 +34,7 @@ long double s21_pow_double(double base, double p) {
     else if ((long int)p % 2 == 0)
       result = s21_pow_calculation(s21_fabs(base), p);
     else
-      result = s21_pow_calculation(s21_fabs(base), p) * (-1);
+      result = s21_pow_calculation(s21_fabs(base), p) * (-1.0);
   } else {
     if (p > 0)
       result = ZERO;
@@ -52,13 +47,17 @@ long double s21_pow_double(double base, double p) {
 }
 
 long double s21_pow_calculation(double base, double p) {
-  double i = 0;
-  for (; i <= p; i++)
-    ;
-  long double res = s21_pow_int(base, i);
-  res = res * s21_exp((p - i) * s21_log(base));
+  long double res;
+  res = s21_exp(p * s21_log(base));
   return res;
-  // return s21_exp(p * s21_log(base));
+
+  // double i = 0;
+  // for (; i <= p; i++)
+  //   ;
+  //  long double res = s21_pow_int(base, i);
+  //  res = res * s21_exp((p - i) * s21_log(base));
+  //  return res;
+  //  return s21_exp(p * s21_log(base));
 }
 
 long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
