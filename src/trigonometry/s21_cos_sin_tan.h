@@ -1,5 +1,5 @@
-#ifndef TRIGONOMET
-#define TRIGONOMET
+#ifndef COS
+#define COS
 
 #ifndef S21_AFACFL
 #include "../abs_fabs_ceil_floor/s21_abs_fabs_ceil_floor.h"
