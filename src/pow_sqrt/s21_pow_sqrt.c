@@ -1,5 +1,5 @@
-
 #include "s21_pow_sqrt.h"
+
 
 long double s21_pow(double base, double p) {
   if (p == (long int)p)
