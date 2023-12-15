@@ -1,6 +1,5 @@
 #include "s21_pow_sqrt.h"
 
-
 long double s21_pow(double base, double p) {
   if (p == (long int)p)
     return s21_pow_int(base, p);
@@ -8,19 +7,31 @@ long double s21_pow(double base, double p) {
     return s21_pow_double(base, p);
 }
 long double s21_pow_int(long double base, long double p) {
-  if (p == 0) {
-    return ONE;  // Выход из рекурсии.
-  }
-  if (p > 0) {
-    if ((long long)p % 2 == 0) {
-      long double t = s21_pow_int(base, p / 2.0);
-      return t * t;
+  // printf("%Lf\n", p);
+  // if (p == 0) {
+  //   return ONE;  // Выход из рекурсии.
+  // }
+  // if (p > 0) {
+  //   if ((long long)p % 2 == 0) {
+  //     long double t = s21_pow_int(base, p / 2.0);
+  //     return t * t;
+  //   } else {
+  //     return s21_pow_int(base, p - ONE) * base;
+  //   }
+  // } else {
+  //   return s21_pow_int(base, p + ONE) / base;
+  // }
+  long double result = ONE;
+  for (; p != 0;) {
+    if (p > 0) {
+      result *= base;
+      p--;
     } else {
-      return s21_pow_int(base, p - ONE) * base;
+      result /= base;
+      p++;
     }
-  } else {
-    return s21_pow_int(base, p + ONE) / base;
   }
+  return result;
 }
 long double s21_pow_double(double base, double p) {
   long double result;
@@ -29,7 +40,8 @@ long double s21_pow_double(double base, double p) {
   else if (base < 0) {
     if (p == 0)
       result = ONE;
-    else result = NaN;
+    else
+      result = NaN;
   } else {
     if (p > 0)
       result = ZERO;

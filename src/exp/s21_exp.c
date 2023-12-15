@@ -12,8 +12,9 @@ long double s21_exp(double x) {
       res *= s21_exp_double(x - (long long)x);
     } else
       res = ZERO;
-    // if (res < __DBL_DENORM_MIN__) res = ZERO;
-    if (res > __DBL_MAX__) res = -InF;   // write it down (riderrki for riderkri)
+    // if (res < __DBL_DENORM_MIN__) res = ZERO; // write it down (riderrki for
+    // riderkri)
+    if (res > __DBL_MAX__) res = -InF;  // write it down (riderrki for riderkri)
   }
   return res;
 }
