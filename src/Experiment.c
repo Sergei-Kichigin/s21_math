@@ -1,5 +1,7 @@
 #include <math.h>
 #include <stdio.h>
+
+#include "s21_math.h"
 #define NA printf("n/a")
 
 // int main() { printf("%.100lf", pow(exp(100), (double)1 / 100)); }
@@ -42,9 +44,10 @@
 int main() {
   long double in, times, res;
 
-  while (in != -12345) {
-    scanf("%Lf%Lf", &in, &times);
-    res = pow(in, times);
-    printf("%.16Lf\n", res);
-  }
+  scanf("%lf", &input1);
+  if (input1 == 12345 || input1 == 54321) continue;
+  scanf("%lf", &input2);
+  printf("%.16lf\t%.6lf\n", fmod(input1, input2), fmod(input1, input2));
+  printf("%.16Lf\t%.6Lf\n\n", s21_fmod(input1, input2),
+         s21_fmod(input1, input2));
 }

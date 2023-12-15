@@ -19,6 +19,7 @@ FMOD=s21_fmod
 #SRCFACT=fact/s21_factorial
 SRCTESTS=tests/
 TESTS=s21_test_riderkri
+AUTOTESTS=s21_autotest_riderkri
 CL=../materials/linters/.clang-format
 CF=clang-format
 MATH=s21_math.h
@@ -31,6 +32,15 @@ test_riderkri: clang_all $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(TESTS).o $(COS
 	rm -f *.o
 	rm -f *.gch
 	rm -f */*gch
+
+autotest_riderkri: clang_all $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(AUTOTESTS).o $(COS).o $(ACOS).o $(FMOD).o #s21_factorial.o
+	$(CC) $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(AUTOTESTS).o $(COS).o $(ACOS).o $(FMOD).o $(LMFLAG) $(OFLAG) $(AUTOTESTS)
+	rm -f *.o
+	rm -f *.gch
+	rm -f */*gch
+
+$(AUTOTESTS).o: $(SRCTESTS)$(AUTOTESTS).c
+	$(CC) $(CFLAGS) $(DFLAG) $(SRCTESTS)$(AUTOTESTS).c
 
 $(TESTS).o: $(SRCTESTS)$(TESTS).c
 	$(CC) $(CFLAGS) $(DFLAG) $(SRCTESTS)$(TESTS).c
@@ -97,7 +107,6 @@ clang_all:
 	rm -f $(SRCTESTS).$(CF)
 	rm -f $(SRCFACT).$(CF)
 
-clear_test: clear_o clear_test
 
 clear_o:
 	rm -f *.o
@@ -111,8 +120,13 @@ clear_o:
 # rm -f $(SRCFACT)*.gch
 	rm -f *.gch
 
-
 clear_test: clear_o
 	rm -f $(TESTS)
 
+clear_autotest: clear_o
+	rm -f $(AUTOTESTS)
+	rm -f test_logs/temp.md
+
 rebuild_test: clear_test test_riderkri
+
+rebuild_autotest: clear_autotest autotest_riderkri

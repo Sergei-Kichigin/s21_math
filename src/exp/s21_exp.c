@@ -8,7 +8,7 @@ long double s21_exp(double x) {
     res = s21_pow_int(Emathh, (long int)x);
     res *= s21_exp_double(x - (long int)x);
   }
-  if (res > __DBL_MAX__) {            //write it down
+  if (res > __DBL_MAX__) {  // write it down (riderrki for riderkri)
     res = -InF;
   }
   return res;
