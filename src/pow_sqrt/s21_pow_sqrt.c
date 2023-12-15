@@ -12,7 +12,7 @@ long double s21_pow_int(long double base, long double p) {
     return ONE;  // Выход из рекурсии.
   }
   if (p > 0) {
-    if (p == (long long)p && (long long)p % 2 == 0) {
+    if ((long long)p % 2 == 0) {
       long double t = s21_pow_int(base, p / 2.0);
       return t * t;
     } else {
@@ -29,12 +29,7 @@ long double s21_pow_double(double base, double p) {
   else if (base < 0) {
     if (p == 0)
       result = ONE;
-    else if (p != (long int)p)
-      result = NaN;
-    else if ((long int)p % 2 == 0)
-      result = s21_pow_calculation(s21_fabs(base), p);
-    else
-      result = s21_pow_calculation(s21_fabs(base), p) * (-1.0);
+    else result = NaN;
   } else {
     if (p > 0)
       result = ZERO;
