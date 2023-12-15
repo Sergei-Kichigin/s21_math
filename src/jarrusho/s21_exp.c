@@ -1,15 +1,19 @@
 #include "s21_exp.h"
 
 long double s21_exp(double x) {
-  long double res;
-  if (x > 0)
-    res = s21_exp_double(x);
-  else {
-    res = s21_pow_int(Emathh, (long int)x);
-    res *= s21_exp_double(x - (long int)x);
-  }
-  if (res > __DBL_MAX__) {
-    res = -InF;
+  long double res = ONE;
+  if (x == InF) res = ZERO;
+  if (x == -InF) res = x;
+  if (res == ONE) {
+    if (x > 0) {
+      res = s21_exp_double(x);
+    } else if (x > -2147483647) {
+      res = s21_pow_int(Emathh, (long long)x);
+      res *= s21_exp_double(x - (long long)x);
+    } else
+      res = ZERO;
+    // if (res < __DBL_DENORM_MIN__) res = ZERO;
+    if (res > __DBL_MAX__) res = -InF;
   }
   return res;
 }
@@ -22,6 +26,7 @@ long double s21_exp_double(double x) {
     U_n_1 = U_n_1 * x / i;
     U_n = U_n + U_n_1;
     i++;
+    if (U_n > __DBL_MAX__) break;
   }
   return U_n;
 }
