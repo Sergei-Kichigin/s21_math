@@ -5,13 +5,11 @@ long double s21_acos(double x) {
   return (double)(PI / 2.0 - s21_asin(x));
 }
 
-/// 1
-
 long double s21_asin(double x) {
   if (s21_abs(x) > 1) return NaN;
 
   long double res = 0;
-  long double flag;
+  long double flag = 0;
   if (x > 0)
     flag = ONE;
   else
@@ -30,24 +28,19 @@ long double s21_asin(double x) {
   return res;
 }
 
-// asin(1)
-
 long double s21_atan(double x) {
-  long double res;
-  /*
-  if (x > 10000)
-    res = x;
-  else
-  */
-  res = s21_sqrt(1 + x * x);
-  return s21_asin((double)(x / res));
+  long double res = 0;
+  res = 1.0 / s21_sqrt(1.0 + x * x);
+  if (s21_abs(x) >= 1) {
+    res = s21_acos((double)(res));
+    if (x < 0) res *= -1.0;
+  } else
+    res = s21_asin((double)(x * res));
+  return res;
 }
 
-/*Problem:
-
+/*Problems:
+1. Долго считает 9999999999.999999
 1. #include & #define -> #include "s21_acos_asin_atan.h"
 2. #define NaN1 -(0.0 / 0.0)  sign-  ??? -> nan
-3. atan - 1000 - долго считает ->
-  a) починить корень?
-  b) распиcать s21_asin? чтобы не терять точность?
 */
