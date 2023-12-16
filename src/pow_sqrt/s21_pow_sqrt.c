@@ -3,9 +3,9 @@
 #include <stdio.h>  //remove
 
 long double s21_pow(double base, double p) {
-  // if (p == (long int)p)
-  //   return s21_pow_int(base, p);
-  // else
+  if (p == (long int)p)
+    return s21_pow_int(base, p);
+  else
   return s21_pow_double(base, p);
 }
 
