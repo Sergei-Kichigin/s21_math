@@ -22,8 +22,10 @@ long double s21_ceil(double x) {
 }
 
 long double s21_floor(double x) {
+  if (x == InFP || x == InFN) return x;
+
   long double longX = (long)x;
-  long double answer;
+  long double answer = 0;
 
   if (x == (double)longX) {
     answer = longX;
