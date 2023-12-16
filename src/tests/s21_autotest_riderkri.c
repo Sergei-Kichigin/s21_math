@@ -4,16 +4,20 @@
 
 #include "../s21_math.h"
 #define NA printf("n/a\n")
-#define TEST_COUNT 37
+#define TEST_COUNT 44
+#define TEST_COUNT_2 15  /// remove
 
 // ATTENTION:     DOES NOT TEST SPEED AT ALL!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 int main() {
   long double test_nums[TEST_COUNT] = {
       -9999999999999999,
       -9999999999.999999,
+      -9999999999,
+      -9999999998,
       -999999,
       -99999,
       -555.55,
+      -554,
       -555,
       -6.2831872,
       -5.5,
@@ -35,20 +39,29 @@ int main() {
       5.5,
       6.2831872,
       55,
+      54,
       55.5555,
       99999,
       999999,
+      9999999999,
+      9999999998,
       9999999999.999999,
       9999999999999999,
       'k',
-      '+'};  // ATTENTION:     DOES NOT TEST INPUT
-             // LIKE: "5.l" OR "5." or "-inf" and "inf"
-  // test_nums[34] = -inf;
-  // test_nums[35] = inf;
-  test_nums[33] = -__DBL_MAX__;
-  test_nums[34] = __DBL_MAX__;
-  test_nums[35] = -__DBL_DENORM_MIN__;
-  test_nums[36] = __DBL_DENORM_MIN__;
+      '+',
+      '\0'};  // ATTENTION:     DOES NOT TEST INPUTS
+              // LIKE: "5.l" OR "5." or "-inf" and "inf"
+  // test_nums[] = -inf;
+  // test_nums[] = inf;
+  test_nums[TEST_COUNT - 4] = -__DBL_MAX__;
+  test_nums[TEST_COUNT - 3] = __DBL_MAX__;
+  test_nums[TEST_COUNT - 2] = -__DBL_DENORM_MIN__;
+  test_nums[TEST_COUNT - 1] = __DBL_DENORM_MIN__;
+
+  // long double test_nums[TEST_COUNT_2] = {
+  //     /// remove
+  //     -9999999999, -9999999998, -5,  -5.5, -4, -1,         -0.5,      0,
+  //     0.5,         1,           5.5, 5,    4,  9999999999, 9999999998};
 
   FILE* file = fopen("test_logs/temp.md", "a");
   if (file == NULL) {
@@ -91,14 +104,19 @@ int main() {
     }
   } else if (k == 3) {  // pow
     fprintf(file, "POW(x,y):\n");
-    for (int i = 0; i < TEST_COUNT; i++) {
-      for (int j = 0; j < TEST_COUNT; j++) {
+    for (int i = 0; i < TEST_COUNT; i++) {    /// TEST_COUNT_2
+      for (int j = 0; j < TEST_COUNT; j++) {  // TEST_COUNT_2
+        // if (test_nums[j] != (long)test_nums[j]) continue;  /// remove
         fprintf(file, "%.6Lf\t%.6Lf\n", test_nums[i], test_nums[j]);
         fprintf(file, "\t%.16lf\t%.6lf\n", pow(test_nums[i], test_nums[j]),
                 pow(test_nums[i], test_nums[j]));
-        fprintf(file, "\t%.16Lf\t%.6Lf\n\n",
-                s21_pow(test_nums[i], test_nums[j]),
+        fprintf(file, "\t%.16Lf\t%.6Lf\n", s21_pow(test_nums[i], test_nums[j]),
                 s21_pow(test_nums[i], test_nums[j]));
+        if (pow(test_nums[i], test_nums[j]) ==
+            s21_pow(test_nums[i], test_nums[j]))
+          fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNORMA\n\n");
+        else
+          fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tERROR\n\n");
       }
     }
   } else if (k == 4) {  // floor

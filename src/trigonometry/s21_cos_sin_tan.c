@@ -48,7 +48,7 @@ long double s21_sin(double x) {
   return s21_sqrt(ONE - s21_cos(x) * s21_cos(x)) * flag;
 }
 
-long double s21_tan(double x) {
-  if (s21_fabs(s21_cos(x)) <= EPSilon) return InF;
+long double s21_tan(double x) {  // error with INF here!!!!
+  if (s21_fabs(s21_cos(x)) <= EPSilon) return InFP;
   return s21_sin(x) / s21_cos(x);
 }

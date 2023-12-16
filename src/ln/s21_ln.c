@@ -17,9 +17,9 @@
 
 long double s21_log(double x) {
   long double U_n_1 = ZERO, U_n = ZERO;
-  if (x < ZERO || x == InF) U_n = NaN;
-  if (x == ZERO) U_n = InF;
-  if (x == -InF) U_n = x;
+  if (x < ZERO || x == InFP) U_n = NaN;
+  if (x == ZERO) U_n = InFP;
+  if (x == InFN) U_n = x;
   if (U_n == ZERO) {
     long double power = ZERO;
     for (; x > ONE; power++) {
