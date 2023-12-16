@@ -175,7 +175,7 @@ long double s21_pow_calculation(double base, long double p) {
   //  return s21_exp(p * s21_log(base));
 }
 
-long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
+//long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
 
 // long double not_a_crutch(long double x) {
 //   long int temp;
@@ -186,3 +186,21 @@ long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
 //   else
 //     return x;
 // }
+
+long double s21_sqrt(double base) {
+  long double flag = ZERO, U_n = base / 2;
+  if (base < ZERO) {
+    U_n = NaN;
+    flag = ONE;
+  }
+  if (base == ZERON || base == InFP) {
+    U_n = base;
+    flag = ONE;
+  }
+  if (flag == ZERO) {
+    while (s21_fabs(U_n * U_n - base) > EPSilon2) {
+      U_n = (U_n + base / U_n) / TWO;
+    }
+  }
+  return U_n;
+}
