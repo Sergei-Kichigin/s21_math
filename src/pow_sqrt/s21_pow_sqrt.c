@@ -6,7 +6,7 @@ long double s21_pow(double base, double p) {
   if (p == (long int)p)
     return s21_pow_int(base, p);
   else
-  return s21_pow_double(base, p);
+    return s21_pow_double(base, p);
 }
 
 long double s21_pow_int(long double base,
@@ -133,15 +133,16 @@ long double s21_pow_int(long double base,
   return result;
 }
 
-long double s21_pow_double(double base, double p) {  //we need to either change LN either pow
+long double s21_pow_double(
+    double base, double p) {  // we need to either change LN either pow
   long double result;
   if (base > 0)
     result = s21_pow_calculation(base, p);
   else if (base < 0) {
     if (p == 0)
       result = ONE;
-    else{
-      if(p==(long int)p)
+    else {
+      if (p == (long int)p)
         result = s21_pow_calculation(base, p);
       else
         result = NaN;  /// bag here?
@@ -158,7 +159,7 @@ long double s21_pow_double(double base, double p) {  //we need to either change 
 }
 
 long double s21_pow_calculation(double base, long double p) {
-  long ouble res;
+  long double res;
   // printf("%lf->%Lf", base, p);
   res = s21_exp(p * s21_log(base));
   // printf("->->%Lf\t", res);
@@ -176,6 +177,26 @@ long double s21_pow_calculation(double base, long double p) {
 }
 
 long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
+
+/*
+long double s21_sqrt(double base) {
+  long double flag = ZERO, U_n = base / 2;
+  if (base < ZERO) {
+    U_n = NaN;
+    flag = ONE;
+  }
+  if (base == ZERON || base == InFP) {
+    U_n = base;
+    flag = ONE;
+  }
+  if (flag == ZERO) {
+    while (s21_fabs(U_n * U_n - base) > EPSilon2) {
+      U_n = (U_n + base / U_n) / TWO;
+    }
+  }
+  return U_n;
+}
+*/
 
 // long double not_a_crutch(long double x) {
 //   long int temp;
