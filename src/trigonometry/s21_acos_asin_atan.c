@@ -1,7 +1,5 @@
 #include "s21_acos_asin_atan.h"
 
-#include <stdio.h>
-
 long double s21_acos(double x) {
   if (s21_fabs(x) > 1) return NaN;
   return (double)(PI / 2.0 - s21_asin(x));
@@ -38,7 +36,6 @@ long double s21_atan(double x) {
     else
       return -PI / 2.0;
   }
-
   long double res = 0;
   res = 1.0 / s21_sqrt(1.0 + x * x);
   if (s21_fabs(x) >= 1) {
