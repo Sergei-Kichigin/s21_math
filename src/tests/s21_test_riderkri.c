@@ -34,8 +34,8 @@ int main() {
         if (input1 == 12345 || input1 == 54321) continue;
         scanf("%lf", &input2);
         printf("%.16lf\t%.6lf\n", pow(input1, input2), pow(input1, input2));
-        printf("%.16Lf\t%.6Lf\n\n", s21_pow(input1, input2),
-               s21_pow(input1, input2));
+        // printf("%.16Lf\t%.6Lf\n\n", s21_pow(input1, input2),
+        //        s21_pow(input1, input2));
         break;
       case 4:
         scanf("%lf", &input1);

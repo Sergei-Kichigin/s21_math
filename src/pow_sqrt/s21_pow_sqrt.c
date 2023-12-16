@@ -3,10 +3,10 @@
 #include <stdio.h>  //remove
 
 long double s21_pow(double base, double p) {
-  if (p == (long int)p)
-    return s21_pow_int(base, p);
-  else
-  return s21_pow_double(base, p);
+  // if (p == (long int)p)
+  //   return s21_pow_int(base, p);
+  // else
+    return s21_pow_double(base, p);
 }
 
 long double s21_pow_int(long double base,
@@ -133,15 +133,16 @@ long double s21_pow_int(long double base,
   return result;
 }
 
-long double s21_pow_double(double base, double p) {  //we need to either change LN either pow
+long double s21_pow_double(
+    double base, double p) {  // we need to either change LN either pow
   long double result;
   if (base > 0)
     result = s21_pow_calculation(base, p);
   else if (base < 0) {
     if (p == 0)
       result = ONE;
-    else{
-      if(p==(long int)p)
+    else {
+      if (p == (long int)p)
         result = s21_pow_calculation(base, p);
       else
         result = NaN;  /// bag here?
@@ -158,10 +159,10 @@ long double s21_pow_double(double base, double p) {  //we need to either change 
 }
 
 long double s21_pow_calculation(double base, long double p) {
-  long ouble res;
+  long double res;
   // printf("%lf->%Lf", base, p);
   res = s21_exp(p * s21_log(base));
-  // printf("->->%Lf\t", res);
+  // printf("->->%Lf\t", res);s
   return res;
 
   // long double i = 0;
