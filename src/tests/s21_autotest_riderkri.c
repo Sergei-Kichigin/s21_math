@@ -95,6 +95,10 @@ int main() {
       fprintf(file, "\t%.16lf\t%.6lf\n", log(test_nums[i]), log(test_nums[i]));
       fprintf(file, "\t%.16Lf\t%.6Lf\n\n", s21_log(test_nums[i]),
               s21_log(test_nums[i]));
+      if (log(test_nums[i]) == s21_log(test_nums[i]))
+        fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNORMA\n\n");
+      else
+        fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tERROR\n\n");
     }
   } else if (k == 2) {  // exp
     fprintf(file, "EXP(x):\n");
@@ -103,6 +107,10 @@ int main() {
       fprintf(file, "\t%.16lf\t%.6lf\n", exp(test_nums[i]), exp(test_nums[i]));
       fprintf(file, "\t%.16Lf\t%.6Lf\n\n", s21_exp(test_nums[i]),
               s21_exp(test_nums[i]));
+      if (exp(test_nums[i]) == s21_exp(test_nums[i]))
+        fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNORMA\n\n");
+      else
+        fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tERROR\n\n");
     }
   } else if (k == 3) {  // pow
     fprintf(file, "POW(x,y):\n");

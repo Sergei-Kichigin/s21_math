@@ -9,7 +9,7 @@ long double s21_cos(double x) {
   tmp--;
   x = x - (tmp * PI_2);
   if (x < 0) x *= MINUS;
-  for (long double i = 2; s21_fabs((double)step) >= EPSilon; i += 2) {
+  for (long double i = 2; s21_fabs((double)step) >= EPSilon2; i += 2) {
     res += step;
     step = MINUS * step * x * x / (i * (i - ONE));
   }

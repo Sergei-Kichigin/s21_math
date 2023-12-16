@@ -1,5 +1,6 @@
 #include "s21_ln.h"
 
+#include <stdio.h>
 // long double s21_log(double x) {
 //   if (x < 0) return NaN;
 //   if (x == 0) return InF;
@@ -17,10 +18,12 @@
 
 long double s21_log(double x) {
   long double U_n_1 = ZERO, U_n = ZERO;
+  // printf("to%lf\n", x);
   if (x < ZERO || x == InFP) U_n = NaN;
-  if (x == ZERO) U_n = InFP;
+  if (x == ZERO) U_n = InFN;
   if (x == InFN) U_n = x;
   if (U_n == ZERO) {
+    // printf("you %lf\n", x);
     long double power = ZERO;
     for (; x > ONE; power++) {
       x = x / s21_exp(ONE);

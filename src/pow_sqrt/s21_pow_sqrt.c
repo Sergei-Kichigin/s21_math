@@ -1,12 +1,13 @@
 #include "s21_pow_sqrt.h"
 
+#include <math.h>   //remove
 #include <stdio.h>  //remove
 
 long double s21_pow(double base, double p) {
   // if (p == (long int)p)
   //   return s21_pow_int(base, p);
   // else
-    return s21_pow_double(base, p);
+  return s21_pow_double(base, p);
 }
 
 long double s21_pow_int(long double base,
@@ -133,18 +134,19 @@ long double s21_pow_int(long double base,
   return result;
 }
 
-long double s21_pow_double(
-    double base, double p) {  // we need to either change LN either pow
+long double s21_pow_double(double base, double p) {
   long double result;
+  if(base==)
   if (base > 0)
     result = s21_pow_calculation(base, p);
   else if (base < 0) {
     if (p == 0)
       result = ONE;
     else {
-      if (p == (long int)p)
-        result = s21_pow_calculation(base, p);
-      else
+      if (p == (long int)p) {
+        result = s21_pow_calculation(base * MINUS, p);
+        if ((long int)p % 2 != 0) result *= MINUS;
+      } else
         result = NaN;  /// bag here?
     }
   } else {
@@ -161,7 +163,9 @@ long double s21_pow_double(
 long double s21_pow_calculation(double base, long double p) {
   long double res;
   // printf("%lf->%Lf", base, p);
+  // res = s21_exp(p * s21_log(base));
   res = s21_exp(p * s21_log(base));
+
   // printf("->->%Lf\t", res);s
   return res;
 
@@ -176,7 +180,7 @@ long double s21_pow_calculation(double base, long double p) {
   //  return s21_exp(p * s21_log(base));
 }
 
-long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
+// long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
 
 // long double not_a_crutch(long double x) {
 //   long int temp;
@@ -187,3 +191,21 @@ long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
 //   else
 //     return x;
 // }
+
+long double s21_sqrt(double base) {
+  long double flag = ZERO, U_n = base / 2;
+  if (base < ZERO) {
+    U_n = NaN;
+    flag = ONE;
+  }
+  if (base == ZERON || base == InFP) {
+    U_n = base;
+    flag = ONE;
+  }
+  if (flag == ZERO) {
+    while (s21_fabs(U_n * U_n - base) > EPSilon2) {
+      U_n = (U_n + base / U_n) / TWO;
+    }
+  }
+  return U_n;
+}
