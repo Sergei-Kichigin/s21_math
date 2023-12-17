@@ -9,7 +9,7 @@ long double s21_fmod(double x, double y) {
     int sign_x = 1;
     if (x < 0) sign_x = -1;
     long double temp = s21_truncate(x / y);
-    res = x - temp * y;
+    res = (long double)x - temp * (long double)y;
     if (s21_fabs(res) == Fmod_magic_number) {
       res = sign_x * s21_fabs(y) + res;
     }
