@@ -203,7 +203,7 @@ long double s21_pow_calculation(double base, long double p) {
   //  return s21_exp(p * s21_log(base));
 }
 
-long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
+long double s21_sqrt(double base) { return s21_pow(base, SQRT); }
 
 /*
 long double s21_sqrt(double base) {
