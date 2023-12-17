@@ -4,10 +4,33 @@
 #include <stdio.h>  //remove
 
 long double s21_pow(double base, double p) {
-  // if (p == (long int)p)
-  //   return s21_pow_int(base, p);
-  // else
-  return s21_pow_double(base, p);
+  long double result = TWO;
+  
+  if (p == InFN || p == InFP) {
+    if (base < MINUS || base > ONE)
+      result = (p == InFN ? ZERO : InFP);
+    else if (base > MINUS && base < ONE)
+      result = (p == InFN ? InFP : ZERO);
+    else if (base == MINUS || base == ONE)
+      result = ONE;
+  }
+  if (result == TWO && (base == InFP || base == InFN)) {
+    if (p > ZERO)
+      result = InFP;
+    else if (p < ZERO && p != MINUS)
+      result = ZERO;
+    else if (p == MINUS)
+      result = (base == InFP ? ZERO : ZERON);
+    else
+      result = ONE;
+  }
+  if (result == TWO) {
+    result = s21_pow_double(base, p);
+    if (result > __DBL_MAX__) result = InFP;
+
+    if (result < MINUS * __DBL_MAX__) result = InFN;
+  }
+  return result;
 }
 
 long double s21_pow_int(long double base,
@@ -136,7 +159,7 @@ long double s21_pow_int(long double base,
 
 long double s21_pow_double(double base, double p) {
   long double result;
-  if(base==)
+  // if (base ==)
   if (base > 0)
     result = s21_pow_calculation(base, p);
   else if (base < 0) {
@@ -180,7 +203,7 @@ long double s21_pow_calculation(double base, long double p) {
   //  return s21_exp(p * s21_log(base));
 }
 
-// long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
+long double s21_sqrt(double base) { return s21_pow_double(base, SQRT); }
 
 /*
 long double s21_sqrt(double base) {
@@ -211,21 +234,3 @@ long double s21_sqrt(double base) {
 //   else
 //     return x;
 // }
-
-long double s21_sqrt(double base) {
-  long double flag = ZERO, U_n = base / 2;
-  if (base < ZERO) {
-    U_n = NaN;
-    flag = ONE;
-  }
-  if (base == ZERON || base == InFP) {
-    U_n = base;
-    flag = ONE;
-  }
-  if (flag == ZERO) {
-    while (s21_fabs(U_n * U_n - base) > EPSilon2) {
-      U_n = (U_n + base / U_n) / TWO;
-    }
-  }
-  return U_n;
-}
