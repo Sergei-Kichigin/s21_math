@@ -136,7 +136,7 @@ long double s21_pow_int(long double base,
 
 long double s21_pow_double(double base, double p) {
   long double result;
-  if(base==)
+  // if (base ==)
   if (base > 0)
     result = s21_pow_calculation(base, p);
   else if (base < 0) {
