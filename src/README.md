@@ -1,10 +1,10 @@
 # Tests
 
-Для запуска тестов используйте команду: \
+Для запуска тестов используйте команду: 
 ```make test```
-Отчет покрытия: \
+Отчет покрытия: 
 ```make report```
-Отчет в формате html: \
+Отчет в формате html: 
 ```make coverage_report```
 
 1)*_notused - extra not used functions - take them if you need (don't forge to rename the foulder).
