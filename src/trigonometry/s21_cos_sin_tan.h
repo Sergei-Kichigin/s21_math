@@ -1,13 +1,19 @@
-#include <stdio.h>
+#ifndef COS
+#define COS
 
+#ifndef S21_AFACFL
 #include "../abs_fabs_ceil_floor/s21_abs_fabs_ceil_floor.h"
-#include "../pow_sqrt/s21_pow_sqrt.h"
+#endif
 
-#define EPSilon 1E-18
-#define PI 3.14159265358979323846
-#define PI_2 2.0 * PI
-#define ONE 1.0
-#define MINUS (-1.0)
+#ifndef POW
+#include "../pow_sqrt/s21_pow_sqrt.h"
+#endif
+
+#ifndef CONST
+#include "../constants.h"
+#endif
 
 long double s21_cos(double x);
 long double s21_sin(double x);
+long double s21_tan(double x);
+#endif

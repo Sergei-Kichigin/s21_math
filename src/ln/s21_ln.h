@@ -1,11 +1,19 @@
-#include <stdio.h>
+#ifndef LN
+#define LN
 
-#include "../abs_fabs_ceil_floor/s21_abs_fabs_ceil_floor.h"
+#ifdef EXP
 #include "../exp/s21_exp.h"
+#endif
 
-#define EPSilon 1E-18
-#define ONE 1.0
-#define NaN 0.0 / 0.0
-#define InF -1.0 / 0.0
+#ifndef CONST
+#include "../constants.h"
+#endif
+
+#ifndef S21_AFACFL
+#include "../abs_fabs_ceil_floor/s21_abs_fabs_ceil_floor.h"
+#endif
+
+long double s21_exp(double x);  // needed probably because of separate .o files
 
 long double s21_log(double x);
+#endif
