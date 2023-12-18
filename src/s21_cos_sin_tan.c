@@ -1,5 +1,9 @@
 #include "s21_cos_sin_tan.h"
 
+#include "constants.h"
+#include "s21_abs_fabs_ceil_floor.h"
+#include "s21_pow_sqrt.h"
+
 long double s21_cos(double x) {
   long double res = 0, step = 1;
   double tmp = 0;

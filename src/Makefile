@@ -1,132 +1,46 @@
-CC=gcc
-CFLAGS= -std=c11 -Wall -Werror -Wextra -c
-OFLAG= -o
-LMFLAG=-lm 
-DFLAG= -D_POSIX_C_SOURCE=200809L
-SRCCOS=trigonometry/
-COS=s21_cos_sin_tan
-ACOS=s21_acos_asin_atan
-SRCLN=ln/
-LN=s21_ln
-SRCAFACFL=abs_fabs_ceil_floor/
-AFACFL=s21_abs_fabs_ceil_floor
-SRCPOW=pow_sqrt/
-POW=s21_pow_sqrt
-SRCEXP=exp/
-EXP=s21_exp
-SRCFMOD=fmod/
-FMOD=s21_fmod
-#SRCFACT=fact/s21_factorial
-SRCTESTS=tests/
-TESTS=s21_test_riderkri
-AUTOTESTS=s21_autotest_riderkri
-CL=../materials/linters/.clang-format
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -std=c11 -fprofile-arcs -ftest-coverage
+LIBS = -lcheck -lpthread -lrt -lsubunit -lm
+DFLAG = -D_POSIX_C_SOURCE=200809L
+
+# Исходные файлы
+SRC_FILES = s21_abs_fabs_ceil_floor.c s21_cos_sin_tan.c s21_exp.c s21_ln.c s21_pow_sqrt.c s21_acos_asin_atan.c
+TEST_SRC = tests.c
+
+# Объектные файлы
+OBJ_FILES = $(SRC_FILES:.c=.o)
+TEST_OBJ = $(TEST_SRC:.c=.o)
+
+EXECUTABLE = s21_tests
+
+SRC_CL=../materials/linters/.clang-format
 CF=clang-format
-MATH=s21_math.h
-CP=cp
-# all: s21_math.h  #need to remember how mo make libs
-# s21_math.h: 
 
-test_riderkri: clang_all $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(TESTS).o $(COS).o $(ACOS).o $(FMOD).o #s21_factorial.o
-	$(CC) $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(TESTS).o $(COS).o $(ACOS).o $(FMOD).o $(LMFLAG) $(OFLAG) $(TESTS)
-	rm -f *.o
-	rm -f *.gch
-	rm -f */*gch
+all: clang_all $(EXECUTABLE)
 
-autotest_riderkri: clang_all $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(AUTOTESTS).o $(COS).o $(ACOS).o $(FMOD).o #s21_factorial.o
-	$(CC) $(AFACFL).o $(EXP).o  $(LN).o $(POW).o $(AUTOTESTS).o $(COS).o $(ACOS).o $(FMOD).o $(LMFLAG) $(OFLAG) $(AUTOTESTS)
-	rm -f *.o
-	rm -f *.gch
-	rm -f */*gch
+# Сборка исполняемого файла
+$(EXECUTABLE): $(OBJ_FILES) $(TEST_OBJ)
+	$(CC) $(CFLAGS) $(DFLAG) $(OBJ_FILES) $(TEST_OBJ) -o $(EXECUTABLE) $(LIBS)
 
-$(AUTOTESTS).o: $(SRCTESTS)$(AUTOTESTS).c
-	$(CC) $(CFLAGS) $(DFLAG) $(SRCTESTS)$(AUTOTESTS).c
+%.o: %.c
+	$(CC) $(CFLAGS) $(DFLAG) -c $< -o $@
 
-$(TESTS).o: $(SRCTESTS)$(TESTS).c
-	$(CC) $(CFLAGS) $(DFLAG) $(SRCTESTS)$(TESTS).c
+test: $(EXECUTABLE)
+	./$(EXECUTABLE)
 
-$(COS).o: $(SRCCOS)$(COS).c  $(SRCCOS)$(COS).h
-	$(CC) $(CFLAGS) $(DFLAG)  $(SRCCOS)$(COS).c  $(SRCCOS)$(COS).h
-
-$(ACOS).o: $(SRCCOS)$(ACOS).c  $(SRCCOS)$(ACOS).h
-	$(CC) $(CFLAGS) $(DFLAG)  $(SRCCOS)$(ACOS).c  $(SRCCOS)$(ACOS).h
-
-$(LN).o: $(SRCLN)$(LN).c $(SRCLN)$(LN).h
-	$(CC) $(CFLAGS) $(DFLAG) $(SRCLN)$(LN).c $(SRCLN)$(LN).h
-
-$(AFACFL).o: $(SRCAFACFL)$(AFACFL).c $(SRCAFACFL)$(AFACFL).h
-	$(CC) $(CFLAGS) $(DFLAG) $(SRCAFACFL)$(AFACFL).c $(SRCAFACFL)$(AFACFL).h
-
-$(POW).o: $(SRCPOW)$(POW).c $(SRCPOW)$(POW).h
-	$(CC) $(CFLAGS) $(DFLAG) $(SRCPOW)$(POW).c $(SRCPOW)$(POW).h
-
-$(EXP).o: $(SRCEXP)$(EXP).c $(SRCEXP)$(EXP).h
-	$(CC) $(CFLAGS) $(DFLAG) $(SRCEXP)$(EXP).c $(SRCEXP)$(EXP).h
-
-$(FMOD).o: $(SRCFMOD)$(FMOD).c $(SRCFMOD)$(FMOD).h
-	$(CC) $(CFLAGS) $(DFLAG) $(SRCFMOD)$(FMOD).c $(SRCFMOD)$(FMOD).h
-
-# s21_factorial.o: $(SRCFACT).c $(SRCFACT).h
-# 	$(CC) $(CFLAGS) $(DFLAG) $(SRCFACT).c $(SRCFACT).h 
-
-clang_all: 
-	$(CP) $(CL) .$(CF)
-	$(CP) $(CL) $(SRCLN).$(CF)
-	$(CP) $(CL) $(SRCCOS).$(CF)
-	$(CP) $(CL) $(SRCEXP).$(CF)
-	$(CP) $(CL) $(SRCFMOD).$(CF)
-	$(CP) $(CL) $(SRCPOW).$(CF)
-	$(CP) $(CL) $(SRCAFACFL).$(CF)
-	$(CP) $(CL) $(SRCTESTS).$(CF)
-	$(CP) $(CL) $(SRCFACT).$(CF)
-# $(CF) -i *.c
+clang_all:
+	cp $(SRC_CL) .$(CF)
+	$(CF) -i *.c
 	$(CF) -i *.h
-	$(CF) -i $(SRCLN)*.c
-	$(CF) -i $(SRCLN)*.h
-	$(CF) -i $(SRCCOS)*.c
-	$(CF) -i $(SRCCOS)*.h
-	$(CF) -i $(SRCEXP)*.c
-	$(CF) -i $(SRCEXP)*.h
-	$(CF) -i $(SRCFMOD)*.c
-	$(CF) -i $(SRCFMOD)*.h
-	$(CF) -i $(SRCFACT)*.c
-	$(CF) -i $(SRCFACT)*.h
-	$(CF) -i $(SRCPOW)*.c
-	$(CF) -i $(SRCPOW)*.h
-	$(CF) -i $(SRCAFACFL)*.c
-	$(CF) -i $(SRCAFACFL)*.h
-	$(CF) -i $(SRCTESTS)*.c
-# $(CF) -i $(SRCTESTS)*.h
 	rm -f .$(CF)
-	rm -f $(SRCLN).$(CF)
-	rm -f $(SRCCOS).$(CF)
-	rm -f $(SRCEXP).$(CF)
-	rm -f $(SRCFMOD).$(CF)
-	rm -f $(SRCPOW).$(CF)
-	rm -f $(SRCAFACFL).$(CF)
-	rm -f $(SRCTESTS).$(CF)
-	rm -f $(SRCFACT).$(CF)
 
+coverage: test
+	gcov $(SRC_FILES) $(TEST_SRC)
 
-clear_o:
-	rm -f *.o
-	rm -f $(SRCCOS)*.gch
-	rm -f $(SRCLN)*.gch
-	rm -f $(SRCEXP)*.gch
-	rm -f $(SRCFMOD)*.gch
-	rm -f $(SRCAFACFL)*.gch 
-	rm -f $(SRCPOW)*.gch
-# rm -f $(SRCTESTS)*.gch
-# rm -f $(SRCFACT)*.gch
-	rm -f *.gch
+coverage_report: coverage
+	gcovr -r . --html --html-details -o coverage_report.html
 
-clear_test: clear_o
-	rm -f $(TESTS)
+clean:
+	rm -f $(EXECUTABLE) *.gcda *.gcno *.gcov *.html *.css *.o
 
-clear_autotest: clear_o
-	rm -f $(AUTOTESTS)
-	rm -f test_logs/temp.md
-
-rebuild_test: clear_test test_riderkri
-
-rebuild_autotest: clear_autotest autotest_riderkri
+.PHONY: all test clean

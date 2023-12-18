@@ -1,5 +1,8 @@
 #include "s21_exp.h"
 
+#include "constants.h"
+#include "s21_abs_fabs_ceil_floor.h"
+
 long double s21_exp(double x) {
   long double res = ONE;
   if (x == InFN) res = ZERO;

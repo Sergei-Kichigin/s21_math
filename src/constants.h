@@ -1,5 +1,8 @@
-#ifndef CONST
-#define CONST
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+#define SUCCESS 0
+#define ERROR 1
 
 #define EPSilon 1E-18
 #define EPSilon2 1E-9

@@ -1,5 +1,9 @@
 #include "s21_ln.h"
 
+#include "constants.h"
+#include "s21_abs_fabs_ceil_floor.h"
+#include "s21_exp.h"
+
 // long double s21_log(double x) {
 //   if (x < 0) return NaN;
 //   if (x == 0) return InF;
