@@ -1,7 +1,6 @@
 #include <check.h>
 #include <math.h>
 #include <stdlib.h>
-#include "constants.h"
 #include "s21_math.h"
 
 // FABS
@@ -154,6 +153,14 @@ START_TEST(abs_inf_negative)
   ck_assert_int_eq(result, expected);
 }
 
+// START_TEST(name_of_test)              // name of test
+// {
+//   int input = InFN;                   // input data
+//   int result = s21_abs(input);        // output our function
+//   int expected = abs(input);          // output math function
+//   ck_assert_int_eq(result, expected); // comparison of results
+// }
+
 // Добавляйте свои тесты как в примере выше
 
 Suite *my_math_suite(void)
@@ -164,6 +171,8 @@ Suite *my_math_suite(void)
   s = suite_create("MyMath");
 
   tc_core = tcase_create("Core");
+
+  // tcase_add_test(tc_core, name of test);  // add test case in suite
 
   // FABS
   tcase_add_test(tc_core, fabs_positive);

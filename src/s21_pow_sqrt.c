@@ -1,9 +1,4 @@
-#include "s21_pow_sqrt.h"
-
-#include "constants.h"
-#include "s21_abs_fabs_ceil_floor.h"
-#include "s21_exp.h"
-#include "s21_ln.h"
+#include "s21_math.h"
 
 long double s21_pow(double base, double p) {
   if (p == (long int)p)

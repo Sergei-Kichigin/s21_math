@@ -1,4 +1,4 @@
-#include "s21_factorial.h"
+#include "s21_math.h"
 
 long double s21_fact(int x) {
   if (x == 0)

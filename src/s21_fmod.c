@@ -1,7 +1,4 @@
-#include "s21_fmod.h"
-
-#include "constants.h"
-#include "s21_abs_fabs_ceil_floor.h"
+#include "s21_math.h"
 
 long double s21_fmod(double x, double y) {
   if (y == 0) return NaN;

@@ -1,8 +1,4 @@
-#include "s21_acos_asin_atan.h"
-
-#include "constants.h"
-#include "s21_abs_fabs_ceil_floor.h"
-#include "s21_pow_sqrt.h"
+#include "s21_math.h"
 
 long double s21_acos(double x) {
   if (s21_abs(x) > 1) return NaN;

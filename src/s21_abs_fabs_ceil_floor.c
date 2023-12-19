@@ -1,5 +1,4 @@
-#include "s21_abs_fabs_ceil_floor.h"
-#include "constants.h"
+#include "s21_math.h"
 
 int s21_abs(int x) { 
   return (x < 0) ? -x : x; 
@@ -9,7 +8,7 @@ long double s21_ceil(double x) {
   long double longX = (long)x;
   long double answer;
 
-  if (x == InFP || x == InFN || x == NaN) return x;
+  if (x == InFP || x == InFN) return x;
   if (x != x) return NaN;
 
   if (x == (double)longX) {
