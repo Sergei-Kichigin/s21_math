@@ -4,8 +4,7 @@
 
 #include "../s21_math.h"
 #define NA printf("n/a\n")
-//#define TEST_COUNT 44
-#define TEST_COUNT 42
+#define TEST_COUNT 44
 #define TEST_COUNT_2 15  /// remove
 
 // ATTENTION:     DOES NOT TEST SPEED AT ALL!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -56,10 +55,10 @@ int main() {
               // LIKE: "5.l" OR "5." or "-inf" and "inf"
   // test_nums[] = -inf;
   // test_nums[] = inf;
-  // test_nums[TEST_COUNT - 4] = -__DBL_MAX__;
-  // test_nums[TEST_COUNT - 3] = __DBL_MAX__;
-  // test_nums[TEST_COUNT - 2] = -__DBL_DENORM_MIN__;
-  // test_nums[TEST_COUNT - 1] = __DBL_DENORM_MIN__;
+   test_nums[TEST_COUNT - 4] = -__DBL_MAX__;
+   test_nums[TEST_COUNT - 3] = __DBL_MAX__;
+   test_nums[TEST_COUNT - 2] = -__DBL_DENORM_MIN__;
+   test_nums[TEST_COUNT - 1] = __DBL_DENORM_MIN__;
 
   // long double test_nums[TEST_COUNT_2] = {
   //     /// remove
