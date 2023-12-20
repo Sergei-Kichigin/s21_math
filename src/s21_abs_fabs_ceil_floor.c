@@ -4,7 +4,7 @@ int s21_abs(int x) { return (x < 0) ? -x : x; }
 
 long double s21_ceil(double x) {
   long double longX = (long)x;
-  long double answer;
+  long double answer = 0;
 
   if (x == InFP || x == InFN) return x;
   if (x != x) return NaN;
