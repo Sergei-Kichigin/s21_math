@@ -8,7 +8,7 @@ long double s21_acos(double x) {
 long double s21_asin(double x) {
   if (s21_fabs(x) > 1) return NaN;
 
-  long double res = 0;  //0
+  long double res = 0;  // 0
   long double flag = 0;
   if (x > 0)
     flag = ONE;

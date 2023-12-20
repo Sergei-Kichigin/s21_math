@@ -30,8 +30,7 @@ long double s21_pow(double base, double p) {
   return result;
 }
 
-long double s21_pow_int(long double base,
-                        long double p) {  
+long double s21_pow_int(long double base, long double p) {
   long double result = ONE;
   int flag_even = 0;
   if ((long long)p % 2 == 0) flag_even = 1;
