@@ -4,7 +4,7 @@ LIBS = -lcheck -lpthread -lrt -lsubunit -lm
 DFLAG = -D_POSIX_C_SOURCE=200809L
 
 # Исходные файлы
-SRC_FILES = s21_abs_fabs_ceil_floor.c s21_cos_sin_tan.c s21_exp.c s21_ln.c s21_pow_sqrt.c s21_acos_asin_atan.c
+SRC_FILES = s21_abs_fabs_ceil_floor.c s21_cos_sin_tan.c s21_exp.c s21_ln.c s21_pow_sqrt.c s21_acos_asin_atan.c s21_fmod.c
 TEST_SRC = tests.c
 
 # Объектные файлы

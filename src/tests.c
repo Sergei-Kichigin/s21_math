@@ -155,6 +155,45 @@ START_TEST(abs_inf_negative) {
   ck_assert_int_eq(result, expected);
 }
 
+// FMOD
+
+START_TEST(fmod_positive) {
+  double input1 = 10000;
+  double input2 = 3.4;
+  double result = s21_fmod(input1, input2);
+  double expected = fmod(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(fmod_negative) {
+  double input1 = -10000;
+  double input2 = -3.4;
+  double result = s21_fmod(input1, input2);
+  double expected = fmod(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(fmod_nan) {
+  double input1 = NaN;
+  double input2 = 3.4;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
+START_TEST(fmod_inf_positive) {
+  double input1 = InFP;
+  double input2 = 3.4;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
+START_TEST(fmod_inf_negative) {
+  double input1 = InFN;
+  double input2 = 3.4;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
 // START_TEST(name_of_test)              // name of test
 // {
 //   int input = InFN;                   // input data
@@ -207,6 +246,13 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, abs_inf_negative);
 
   // Добавляйте свои тесты как в примере выше
+
+  // FMOD
+  tcase_add_test(tc_core, fmod_positive);
+  tcase_add_test(tc_core, fmod_negative);
+  tcase_add_test(tc_core, fmod_nan);
+  tcase_add_test(tc_core, fmod_inf_positive);
+  tcase_add_test(tc_core, fmod_inf_negative);
 
   suite_add_tcase(s, tc_core);
 
