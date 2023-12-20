@@ -156,6 +156,14 @@ START_TEST(abs_inf_negative) {
 }
 
 // ACOS
+START_TEST(acos_nan) {
+  double input = NaN;
+  double result = s21_acos(input);
+  double expected = acos(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
 START_TEST(acos_inf_positive) {
   double input = InFP;
   double result = s21_acos(input);
@@ -164,19 +172,26 @@ START_TEST(acos_inf_positive) {
   ck_assert_ldouble_nan(expected);
 }
 
-START_TEST(acos_exist_positive) {
-  double input = 0.5;
+START_TEST(acos_more_one) {
+  double input = 1.000001;
+  double result = s21_acos(input);
+  double expected = acos(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(acos_one) {
+  double input = 1.0;
   double result = s21_acos(input);
   double expected = acos(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 
-START_TEST(acos_not_exist_positive) {
-  double input = 1.3;
+START_TEST(acos_positive_less_one) {
+  double input = 0.000001;
   double result = s21_acos(input);
   double expected = acos(input);
-  ck_assert_ldouble_nan(result);
-  ck_assert_ldouble_nan(expected);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 
 START_TEST(acos_null) {
@@ -186,17 +201,108 @@ START_TEST(acos_null) {
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 
-START_TEST(acos_exist_negative) {
-  double input = -0.3;
+START_TEST(acos_negative_more_minus_one) {
+  double input = -0.999999;
   double result = s21_acos(input);
   double expected = acos(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 
-START_TEST(acos_not_exist_negative) {
-  double input = -100;
+START_TEST(acos_minus_one) {
+  double input = -1.0;
   double result = s21_acos(input);
   double expected = acos(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(acos_negative_less_minus_one) {
+  double input = -9999999999;
+  double result = s21_acos(input);
+  double expected = acos(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(acos_inf_negative) {
+  double input = InFN;
+  double result = s21_acos(input);
+  double expected = acos(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+// ASIN
+START_TEST(asin_nan) {
+  double input = NaN;
+  double result = s21_asin(input);
+  double expected = asin(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(asin_inf_positive) {
+  double input = InFP;
+  double result = s21_asin(input);
+  double expected = asin(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(asin_more_one) {
+  double input = 1.000001;
+  double result = s21_asin(input);
+  double expected = asin(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(asin_one) {
+  double input = 1.0;
+  double result = s21_asin(input);
+  double expected = asin(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(asin_positive_less_one) {
+  double input = 0.000001;
+  double result = s21_asin(input);
+  double expected = asin(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(asin_null) {
+  double input = 0.0;
+  double result = s21_asin(input);
+  double expected = asin(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(asin_negative_more_minus_one) {
+  double input = -0.999999;
+  double result = s21_asin(input);
+  double expected = asin(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(asin_minus_one) {
+  double input = -1.0;
+  double result = s21_asin(input);
+  double expected = asin(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(asin_negative_less_minus_one) {
+  double input = -9999999999;
+  double result = s21_asin(input);
+  double expected = asin(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(asin_inf_negative) {
+  double input = InFN;
+  double result = s21_asin(input);
+  double expected = asin(input);
   ck_assert_ldouble_nan(result);
   ck_assert_ldouble_nan(expected);
 }
@@ -253,13 +359,29 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, abs_inf_negative);
 
   // ACOS
+  tcase_add_test(tc_core, acos_nan);
   tcase_add_test(tc_core, acos_inf_positive);
-  tcase_add_test(tc_core, acos_exist_positive);
-  tcase_add_test(tc_core, acos_not_exist_positive);
+  tcase_add_test(tc_core, acos_more_one);
+  tcase_add_test(tc_core, acos_one);
+  tcase_add_test(tc_core, acos_positive_less_one);
   tcase_add_test(tc_core, acos_null);
-  tcase_add_test(tc_core, acos_exist_negative);
-  tcase_add_test(tc_core, acos_not_exist_negative);
+  tcase_add_test(tc_core, acos_negative_more_minus_one);
+  tcase_add_test(tc_core, acos_minus_one);
+  tcase_add_test(tc_core, acos_negative_less_minus_one);
+  tcase_add_test(tc_core, acos_inf_negative);
 
+  // ASIN
+  tcase_add_test(tc_core, asin_nan);
+  tcase_add_test(tc_core, asin_inf_positive);
+  tcase_add_test(tc_core, asin_more_one);
+  tcase_add_test(tc_core, asin_one);
+  tcase_add_test(tc_core, asin_positive_less_one);
+  tcase_add_test(tc_core, asin_null);
+  tcase_add_test(tc_core, asin_negative_more_minus_one);
+  tcase_add_test(tc_core, asin_minus_one);
+  tcase_add_test(tc_core, asin_negative_less_minus_one);
+  tcase_add_test(tc_core, asin_inf_negative);
+  
   // Добавляйте свои тесты как в примере выше
 
   suite_add_tcase(s, tc_core);
