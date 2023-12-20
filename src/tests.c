@@ -155,7 +155,51 @@ START_TEST(abs_inf_negative) {
   ck_assert_int_eq(result, expected);
 }
 
-//ACOS
+// ACOS
+START_TEST(acos_inf_positive) {
+  double input = InFP;
+  double result = s21_acos(input);
+  double expected = acos(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(acos_exist_positive) {
+  double input = 0.5;
+  double result = s21_acos(input);
+  double expected = acos(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(acos_not_exist_positive) {
+  double input = 1.3;
+  double result = s21_acos(input);
+  double expected = acos(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(acos_null) {
+  double input = 0.0;
+  double result = s21_acos(input);
+  double expected = acos(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(acos_exist_negative) {
+  double input = -0.3;
+  double result = s21_acos(input);
+  double expected = acos(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(acos_not_exist_negative) {
+  double input = -100;
+  double result = s21_acos(input);
+  double expected = acos(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
 
 // START_TEST(name_of_test)              // name of test
 // {
@@ -207,6 +251,14 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, abs_nan);
   tcase_add_test(tc_core, abs_inf_positive);
   tcase_add_test(tc_core, abs_inf_negative);
+
+  // ACOS
+  tcase_add_test(tc_core, acos_inf_positive);
+  tcase_add_test(tc_core, acos_exist_positive);
+  tcase_add_test(tc_core, acos_not_exist_positive);
+  tcase_add_test(tc_core, acos_null);
+  tcase_add_test(tc_core, acos_exist_negative);
+  tcase_add_test(tc_core, acos_not_exist_negative);
 
   // Добавляйте свои тесты как в примере выше
 
