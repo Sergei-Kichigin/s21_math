@@ -9,13 +9,12 @@ long double s21_cos(double x) {
   tmp--;
   x = x - (tmp * PI_2);
   if (x < 0) x *= MINUS;
-  for (long double i = 2; s21_fabs((double)step) >= EPSilon; i += 2) {
+  for (long double i = 2; s21_fabs((double)step) >= EPSilon2; i += 2) {
     res += step;
     step = MINUS * step * x * x / (i * (i - ONE));
   }
   return res;
 }
-
 long double s21_sin(double x) {
   double tmp = 0;
   long double flag;
@@ -38,17 +37,10 @@ long double s21_sin(double x) {
     else
       flag = MINUS;
   }
-  // long double res = 0;
-  // res = s21_fabs(s21_cos(x));
-  // if (1 - res < 0.00001)
-  //   res = (ONE - res) * flag;
-  // else
-  //   res = s21_sqrt(ONE - s21_pow(res, 2)) * flag;
-  // return res;
   return s21_sqrt(ONE - s21_cos(x) * s21_cos(x)) * flag;
 }
 
-long double s21_tan(double x) {  // error with INF here!!!!
+long double s21_tan(double x) {
   if (s21_fabs(s21_cos(x)) <= EPSilon) return InFP;
   return s21_sin(x) / s21_cos(x);
 }

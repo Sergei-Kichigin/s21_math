@@ -11,13 +11,11 @@ long double s21_exp(double x) {
       res = s21_pow_int(Emathh, (long long)x);
       res *= s21_exp_double(x - (long long)x);
     }
-    // if (res < __DBL_DENORM_MIN__) res = ZERO; // write it down (riderrki for
-    // riderkri)
-    if (res > __DBL_MAX__) res = InFP;  // write it down (riderrki for riderkri)
+
+    if (res > __DBL_MAX__) res = InFP;
   }
   return res;
 }
-
 long double s21_exp_double(double x) {
   long double U_n = ONE;
   long double U_n_1 = ONE;
