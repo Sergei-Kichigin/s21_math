@@ -37,7 +37,7 @@ clang_all:
 coverage: test
 	gcov $(SRC_FILES) $(TEST_SRC)
 
-coverage_report: coverage
+gcov_report: coverage
 	gcovr -r . --html --html-details -o coverage_report.html
 
 clean:

@@ -6,6 +6,9 @@ long double s21_ceil(double x) {
   long double longX = (long)x;
   long double answer;
 
+  if (x == InFP || x == InFN) return x;
+  if (x != x) return NaN;
+
   if (x == (double)longX) {
     answer = longX;
   } else if (x >= 0) {
@@ -23,6 +26,7 @@ long double s21_ceil(double x) {
 
 long double s21_floor(double x) {
   if (x == InFP || x == InFN) return x;
+  if (x != x) return NaN;
 
   long double longX = (long)x;
   long double answer = 0;

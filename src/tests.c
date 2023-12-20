@@ -36,6 +36,20 @@ START_TEST(fabs_inf_negative) {
 }
 
 // CEIL
+START_TEST(ceil_edge1) {
+  double input = -0.000001;
+  double result = s21_ceil(input);
+  double expected = ceil(input);
+  ck_assert_ldouble_eq(result, expected);
+}
+
+START_TEST(ceil_int) {
+  double input = 12.0;
+  double result = s21_ceil(input);
+  double expected = ceil(input);
+  ck_assert_ldouble_eq(result, expected);
+}
+
 START_TEST(ceil_positive) {
   double input = 12.54;
   double result = s21_ceil(input);
@@ -67,6 +81,13 @@ START_TEST(ceil_inf_negative) {
 }
 
 // FLOOR
+START_TEST(floor_positive_int) {
+  double input = 12.0;
+  double result = s21_floor(input);
+  double expected = floor(input);
+  ck_assert_ldouble_eq(result, expected);
+}
+
 START_TEST(floor_positive) {
   double input = 12.54;
   double result = s21_floor(input);
@@ -162,6 +183,8 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, fabs_inf_negative);
 
   // CEIL
+  tcase_add_test(tc_core, ceil_edge1);
+  tcase_add_test(tc_core, ceil_int);
   tcase_add_test(tc_core, ceil_positive);
   tcase_add_test(tc_core, ceil_negative);
   tcase_add_test(tc_core, ceil_nan);
@@ -169,6 +192,7 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, ceil_inf_negative);
 
   // FLOOR
+  tcase_add_test(tc_core, floor_positive_int);
   tcase_add_test(tc_core, floor_positive);
   tcase_add_test(tc_core, floor_negative);
   tcase_add_test(tc_core, floor_nan);
