@@ -38,15 +38,12 @@ long double s21_cos(double x);
 long double s21_sin(double x);
 long double s21_tan(double x);
 
-long double s21_pow_int(long double base, long double p);
 long double s21_exp(double x);
 long double s21_exp_double(double x);
 
 long double s21_fmod(double x, double y);
 long double s21_truncate(double x);
-long double s21_fma(long double x, long double y, long double z);
 
-long double s21_exp(double x);
 long double s21_log(double x);
 
 long double s21_pow(double base, double p);
