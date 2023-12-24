@@ -23,11 +23,15 @@ long double s21_sin(double x) {
     res = s21_sqrt(s21_fabs(ONE - s21_cos(x) * s21_cos(x))) * flag;
   }
   return res;
-
 }
 
 long double s21_tan(double x) {
-  if (s21_fabs(s21_cos(x)) <= EPSilon) return InFP;
+  if (s21_fabs(s21_cos(x)) <= EPSilon){
+    if((s21_cos(x)<=0 && s21_sin(x)<0)||(s21_cos(x)>=0 && s21_sin(x)>0))
+      return InFP; 
+    else 
+      return InFN; 
+  } 
   return s21_sin(x) / s21_cos(x);
 }
 
@@ -52,13 +56,16 @@ int extra_pi_romoval(double* x) {
   return flag;
 }
 
+
+
+
 long double nans_infs(double x) {
   long double flag;
-  if (x > InFN && x < InFP && x != NaN && x != NaNP)
+  if (x > InFN && x < InFP && x == x)
     flag = 0;
   else if (x == InFN || x == InFP)
     flag = NaN;
-  else
+  else //x!=x
     flag = x;
   return flag;
 }
