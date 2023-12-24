@@ -203,6 +203,13 @@ START_TEST(fmod_nan2) {
   ck_assert_ldouble_nan(result);
 }
 
+START_TEST(fmod_nan3) {
+  double input1 = 3.4;
+  double input2 = NaN;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
 START_TEST(fmod_inf_positive1) {
   double input1 = InFP;
   double input2 = 3.4;
@@ -314,6 +321,7 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, fmod_negative2);
   tcase_add_test(tc_core, fmod_nan1);
   tcase_add_test(tc_core, fmod_nan2);
+  tcase_add_test(tc_core, fmod_nan3);
   tcase_add_test(tc_core, fmod_inf_positive1);
   tcase_add_test(tc_core, fmod_inf_positive2);
   tcase_add_test(tc_core, fmod_inf_positive3);
