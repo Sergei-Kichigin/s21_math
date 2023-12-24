@@ -1,6 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -std=c11 -fprofile-arcs -ftest-coverage
-LIBS = -lcheck -lpthread -lrt -lsubunit -lm
+LIBS = -lcheck -lsubunit -lm
+# -lpthread -lrt
 DFLAG = -D_POSIX_C_SOURCE=200809L
 
 # Исходные файлы
