@@ -15,6 +15,7 @@
 #define SQRT 0.5
 
 #define NaN 0.0 / 0.0
+#define NaNP -0.0 / 0.0
 #define InFN -1.0 / 0.0
 #define InFP 1.0 / 0.0
 
@@ -34,10 +35,6 @@ long double s21_acos(double x);
 long double s21_asin(double x);
 long double s21_atan(double x);
 
-long double s21_cos(double x);
-long double s21_sin(double x);
-long double s21_tan(double x);
-
 long double s21_exp(double x);
 long double s21_exp_double(double x);
 
@@ -51,5 +48,11 @@ long double s21_pow_calculation(double base, long double p);
 long double s21_pow_int(long double base, long double p);
 long double s21_pow_double(double base, double p);
 long double s21_sqrt(double base);
+
+long double s21_cos(double x);
+long double s21_sin(double x);
+long double s21_tan(double x);
+int extra_pi_romoval(double* x);
+long double nans_infs(double x);
 
 #endif

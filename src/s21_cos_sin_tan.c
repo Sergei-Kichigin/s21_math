@@ -1,46 +1,71 @@
 #include "s21_math.h"
 
 long double s21_cos(double x) {
-  long double res = 0, step = 1;
-  double tmp = 0;
-  if (x < 0) x *= MINUS;
-  for (; tmp * PI_2 <= x; tmp++)
-    ;
-  tmp--;
-  x = x - (tmp * PI_2);
-  if (x < 0) x *= MINUS;
-  for (long double i = 2; s21_fabs((double)step) >= EPSilon2; i += 2) {
-    res += step;
-    step = MINUS * step * x * x / (i * (i - ONE));
+  long double res, step = 1;
+  res = nans_infs(x);
+  if (!res) {
+    extra_pi_romoval(&x);
+    for (long double i = 2;
+         (step >= EPSilon2 && step > 0) || (step <= EPSilon2 && step < 0);
+         i += 2) {
+      res += step;
+      step = MINUS * step * x * x / (i * (i - ONE));
+    }
   }
   return res;
 }
+
 long double s21_sin(double x) {
+  long double flag, res;
+  res = nans_infs(x);
+  if (!res) {
+    flag = extra_pi_romoval(&x);
+    res = s21_sqrt(s21_fabs(ONE - s21_cos(x) * s21_cos(x))) * flag;
+  }
+  return res;
+}
+
+long double s21_tan(double x) {
+  if (s21_fabs(s21_cos(x)) <= EPSilon){
+    if((s21_cos(x)<=0 && s21_sin(x)<0)||(s21_cos(x)>=0 && s21_sin(x)>0))
+      return InFP; 
+    else 
+      return InFN; 
+  } 
+  return s21_sin(x) / s21_cos(x);
+}
+
+int extra_pi_romoval(double* x) {
   double tmp = 0;
-  long double flag;
-  if (x >= 0) {
-    for (; tmp * PI_2 <= x; tmp++)
-      ;
-    tmp--;
-    x = x - (tmp * PI_2);
-    if (x <= PI)
+  int flag;
+
+  if ((*x) >= ZERO) {
+    tmp = s21_fmod((*x), PI_2);
+    if (tmp <= PI)
       flag = ONE;
     else
       flag = MINUS;
   } else {
-    for (; tmp * PI_2 * MINUS >= x; tmp++)
-      ;
-    tmp--;
-    x = x + (tmp * PI_2);
-    if (x <= PI * MINUS)
+    tmp = s21_fmod((*x), PI_2 * MINUS);
+    if (tmp <= PI * MINUS)
       flag = ONE;
     else
       flag = MINUS;
   }
-  return s21_sqrt(ONE - s21_cos(x) * s21_cos(x)) * flag;
+  (*x) = tmp;
+  return flag;
 }
 
-long double s21_tan(double x) {
-  if (s21_fabs(s21_cos(x)) <= EPSilon) return InFP;
-  return s21_sin(x) / s21_cos(x);
+
+
+
+long double nans_infs(double x) {
+  long double flag;
+  if (x > InFN && x < InFP && x == x)
+    flag = 0;
+  else if (x == InFN || x == InFP)
+    flag = NaN;
+  else //x!=x
+    flag = x;
+  return flag;
 }
