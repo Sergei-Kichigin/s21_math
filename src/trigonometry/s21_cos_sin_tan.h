@@ -13,7 +13,13 @@
 #include "../constants.h"
 #endif
 
+#ifndef FMOD
+#include "../fmod/s21_fmod.h"
+#endif
+
 long double s21_cos(double x);
 long double s21_sin(double x);
 long double s21_tan(double x);
+int extra_pi_romoval(double* x);
+long double nans_infs(double x);
 #endif

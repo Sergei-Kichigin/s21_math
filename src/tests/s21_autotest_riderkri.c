@@ -4,61 +4,62 @@
 
 #include "../s21_math.h"
 #define NA printf("n/a\n")
-#define TEST_COUNT 44
+#define TEST_COUNT 44    // 48
 #define TEST_COUNT_2 15  /// remove
 
 // ATTENTION:     DOES NOT TEST SPEED AT ALL!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 int main() {
-  long double test_nums[TEST_COUNT] = {
-      -9999999999999999,
-      -9999999999.999999,
-      -9999999999,
-      -9999999998,
-      -999999,
-      -99999,
-      -555.55,
-      -554,
-      -555,
-      -6.2831872,
-      -5.5,
-      -5,
-      -3.1415936,
-      -1.5707968,
-      -1.000001,
-      -1,
-      -0.999999,
-      -0.5,
-      -0.000001,
-      0,
-      0.000001,
-      0.5,
-      0.999999,
-      1,
-      1.000001,
-      1.5707968,
-      3.1415936,
-      5,
-      5.5,
-      6.2831872,
-      55,
-      54,
-      55.5555,
-      99999,
-      999999,
-      9999999999,
-      9999999998,
-      9999999999.999999,
-      9999999999999999,
-      'k',
-      '+',
-      '\0'};  // ATTENTION:     DOES NOT TEST INPUTS
-              // LIKE: "5.l" OR "5." or "-inf" and "inf"
-              // test_nums[] = -inf;
-              // test_nums[] = inf;
-  test_nums[TEST_COUNT - 4] = -__DBL_MAX__;
-  test_nums[TEST_COUNT - 3] = __DBL_MAX__;
-  test_nums[TEST_COUNT - 2] = -__DBL_DENORM_MIN__;
-  test_nums[TEST_COUNT - 1] = __DBL_DENORM_MIN__;
+  long double test_nums[TEST_COUNT] = {-9999999999999999,
+                                       -9999999999.999999,
+                                       -9999999999,
+                                       -9999999998,
+                                       -999999,
+                                       -99999,
+                                       -555.55,
+                                       -554,
+                                       -555,
+                                       -7.85398163,
+                                       -6.2831872,
+                                       -5.5,
+                                       -5,
+                                       -3.1415936,
+                                       -1.5707968,
+                                       -1.000001,
+                                       -1,
+                                       -0.999999,
+                                       -0.5,
+                                       -0.000001,
+                                       0,
+                                       0.000001,
+                                       0.5,
+                                       0.999999,
+                                       1,
+                                       1.000001,
+                                       1.5707968,
+                                       3.1415936,
+                                       5,
+                                       5.5,
+                                       6.2831872,
+                                       7.85398163,
+                                       55,
+                                       54,
+                                       55.5555,
+                                       99999,
+                                       999999,
+                                       9999999999,
+                                       9999999998,
+                                       9999999999.999999,
+                                       9999999999999999,
+                                       'k',
+                                       '+',
+                                       '\0'};  // ATTENTION:     DOES NOT TEST
+                                               // INPUTS LIKE: "5.l" OR "5." or
+                                               // "-inf" and "inf" test_nums[] =
+                                               // -inf; test_nums[] = inf;
+  // test_nums[TEST_COUNT - 4] = -__DBL_MAX__;
+  // test_nums[TEST_COUNT - 3] = __DBL_MAX__;
+  // test_nums[TEST_COUNT - 2] = -__DBL_DENORM_MIN__;
+  // test_nums[TEST_COUNT - 1] = __DBL_DENORM_MIN__;
 
   // long double test_nums[TEST_COUNT_2] = {
   //     /// remove
@@ -170,6 +171,10 @@ int main() {
       fprintf(file, "\t%.16lf\t%.6lf\n", cos(test_nums[i]), cos(test_nums[i]));
       fprintf(file, "\t%.16Lf\t%.6Lf\n\n", s21_cos(test_nums[i]),
               s21_cos(test_nums[i]));
+      if (cos(test_nums[i]) == s21_cos(test_nums[i]))
+        fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNORMA\n\n");
+      else
+        fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tERROR\n\n");
     }
   } else if (k == 9) {  // sqrt
     fprintf(file, "SQRT(x):\n");
@@ -187,6 +192,10 @@ int main() {
       fprintf(file, "\t%.16lf\t%.6lf\n", sin(test_nums[i]), sin(test_nums[i]));
       fprintf(file, "\t%.16Lf\t%.6Lf\n\n", s21_sin(test_nums[i]),
               s21_sin(test_nums[i]));
+      if (sin(test_nums[i]) == s21_sin(test_nums[i]))
+        fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNORMA\n\n");
+      else
+        fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tERROR\n\n");
     }
   } else if (k == 12) {  // tan
     fprintf(file, "TAN(x):\n");
@@ -195,6 +204,10 @@ int main() {
       fprintf(file, "\t%.16lf\t%.6lf\n", tan(test_nums[i]), tan(test_nums[i]));
       fprintf(file, "\t%.16Lf\t%.6Lf\n\n", s21_tan(test_nums[i]),
               s21_tan(test_nums[i]));
+      if (tan(test_nums[i]) == s21_tan(test_nums[i]))
+        fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNORMA\n\n");
+      else
+        fprintf(file, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tERROR\n\n");
     }
   } else if (k == 13) {  // atan
     fprintf(file, "ATAN(x):\n");

@@ -12,6 +12,7 @@
 #define SQRT 0.5
 
 #define NaN 0.0 / 0.0
+#define NaNP -0.0 / 0.0
 #define InFN -1.0 / 0.0
 #define InFP 1.0 / 0.0
 
