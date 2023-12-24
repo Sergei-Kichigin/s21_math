@@ -307,7 +307,6 @@ START_TEST(asin_inf_negative) {
   ck_assert_ldouble_nan(expected);
 }
 
-
 // ATAN
 START_TEST(atan_nan) {
   double input = NaN;
@@ -340,6 +339,13 @@ START_TEST(atan_null) {
 
 START_TEST(atan_negative) {
   double input = -0.000001;
+  double result = s21_atan(input);
+  double expected = atan(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(atan_max_negative) {
+  double input = -2.3;
   double result = s21_atan(input);
   double expected = atan(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
@@ -427,15 +433,15 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, asin_negative_less_minus_one);
   tcase_add_test(tc_core, asin_inf_negative);
 
-
   // ATAN
   tcase_add_test(tc_core, atan_nan);
   tcase_add_test(tc_core, atan_inf_positive);
   tcase_add_test(tc_core, atan_positive);
   tcase_add_test(tc_core, atan_null);
   tcase_add_test(tc_core, atan_negative);
+  tcase_add_test(tc_core, atan_max_negative);
   tcase_add_test(tc_core, atan_inf_negative);
-  
+
   // Добавляйте свои тесты как в примере выше
 
   suite_add_tcase(s, tc_core);
