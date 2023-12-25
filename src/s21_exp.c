@@ -2,7 +2,6 @@
 
 long double s21_exp(double x) {
   long double res = ONE;
-  // if (x == InFN) return ZERO;
   if (x == InFN)
     res = ZERO;
   else {

@@ -223,10 +223,6 @@ START_TEST(exp_inf_positive) {
 START_TEST(exp_nan) {
   ck_assert_ldouble_nan(s21_exp(NaN));
   ck_assert_ldouble_nan(exp(NaN));
-  // double input = NaN;
-  // double result = s21_exp(input);
-  // double expected = exp(input);
-  // ck_assert_ldouble_eq(result, expected);
 }
 // LOG
 START_TEST(log_inf_negative) {
@@ -280,6 +276,312 @@ START_TEST(log_nan) {
   ck_assert_ldouble_nan(result);
   ck_assert_ldouble_nan(expected);
 }
+
+// POW
+START_TEST(pow_nan_0) {
+  double input1 = NaN;
+  double input2 = NaN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+// START_TEST(pow_nan_1) {
+//   double input1 = 1.0;
+//   double input2 = NaN;
+//   double result = s21_pow(input1, input2);
+//   double expected = pow(input1, input2);
+//   ck_assert_ldouble_nan(result);
+//   ck_assert_ldouble_nan(expected);
+// }
+START_TEST(pow_nan_2) {
+  double input1 = 12;
+  double input2 = NaN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+START_TEST(pow_nan_3) {
+  double input1 = NaN;
+  double input2 = 12;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+START_TEST(pow_inf_1) {
+  double input1 = InFN;
+  double input2 = InFN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_2) {
+  double input1 = InFP;
+  double input2 = InFP;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_3) {
+  double input1 = InFN;
+  double input2 = InFP;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_4) {
+  double input1 = InFP;
+  double input2 = InFN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative1_nan) {
+  double input1 = InFN;
+  double input2 = NaN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+START_TEST(pow_inf_negative2_nan) {
+  double input1 = NaN;
+  double input2 = InFN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+START_TEST(pow_inf_positive1_nan) {
+  double input1 = InFP;
+  double input2 = NaN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+START_TEST(pow_inf_positive2_nan) {
+  double input1 = NaN;
+  double input2 = InFP;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+START_TEST(pow_inf_negative1_1) {
+  double input1 = InFN;
+  double input2 = 12;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative1_2) {
+  double input1 = InFN;
+  double input2 = -12;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative1_3) {
+  double input1 = InFN;
+  double input2 = -1;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative1_4) {
+  double input1 = InFN;
+  double input2 = 0;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative1_5) {
+  double input1 = InFN;
+  double input2 = 1.5;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative2_1) {
+  double input1 = -12;
+  double input2 = InFN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative2_2) {
+  double input1 = -1;
+  double input2 = InFN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative2_3) {
+  double input1 = -0.5;
+  double input2 = InFN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative2_4) {
+  double input1 = -0;
+  double input2 = InFN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative2_5) {
+  double input1 = 0.5;
+  double input2 = InFN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative2_6) {
+  double input1 = 1;
+  double input2 = InFN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_negative2_7) {
+  double input1 = 12;
+  double input2 = InFN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive1_1) {
+  double input1 = InFP;
+  double input2 = 12;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive1_2) {
+  double input1 = InFP;
+  double input2 = -12;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive1_3) {
+  double input1 = InFP;
+  double input2 = -1;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive1_4) {
+  double input1 = InFP;
+  double input2 = 0;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive1_5) {
+  double input1 = InFP;
+  double input2 = 1.5;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive2_1) {
+  double input1 = -12;
+  double input2 = InFP;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive2_2) {
+  double input1 = -1;
+  double input2 = InFP;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive2_3) {
+  double input1 = -0.5;
+  double input2 = InFP;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive2_4) {
+  double input1 = -0;
+  double input2 = InFP;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive2_5) {
+  double input1 = 0.5;
+  double input2 = InFP;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive2_6) {
+  double input1 = 1;
+  double input2 = InFP;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_inf_positive2_7) {
+  double input1 = 12;
+  double input2 = InFP;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+// START_TEST(log_negative) {
+//   double input = -12;
+//   double result = s21_log(input);
+//   double expected = log(input);
+//   ck_assert_ldouble_nan(result);
+//   ck_assert_ldouble_nan(expected);
+// }
+// START_TEST(log_null) {
+//   double input = 0.0;
+//   double result = s21_log(input);
+//   double expected = log(input);
+//   ck_assert_ldouble_eq(result, expected);
+// }
+// START_TEST(log_positive_less_one) {
+//   double input = 0.01;
+//   double result = s21_log(input);
+//   double expected = log(input);
+//   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+// }
+// START_TEST(log_positive_one) {
+//   double input = 1.0;
+//   double result = s21_log(input);
+//   double expected = log(input);
+//   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+// }
+// START_TEST(log_positive) {
+//   double input = 12.0;
+//   double result = s21_log(input);
+//   double expected = log(input);
+//   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+// }
+// START_TEST(log_inf_positive) {
+//   double input = InFP;
+//   double result = s21_log(input);
+//   double expected = log(input);
+//   ck_assert_ldouble_eq(result, expected);
+// }
+// START_TEST(log_nan) {
+//   double input = NaN;
+//   double result = s21_log(input);
+//   double expected = log(input);
+//   ck_assert_ldouble_nan(result);
+//   ck_assert_ldouble_nan(expected);
+// }
 
 Suite *my_math_suite(void) {
   Suite *s;
@@ -345,6 +647,44 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, log_positive);
   tcase_add_test(tc_core, log_inf_positive);
   tcase_add_test(tc_core, log_nan);
+
+  // POW
+  tcase_add_test(tc_core, pow_nan_0);
+  // tcase_add_test(tc_core, pow_nan_1);
+  tcase_add_test(tc_core, pow_nan_2);
+  tcase_add_test(tc_core, pow_nan_3);
+  tcase_add_test(tc_core, pow_inf_1);
+  tcase_add_test(tc_core, pow_inf_2);
+  tcase_add_test(tc_core, pow_inf_3);
+  tcase_add_test(tc_core, pow_inf_4);
+  tcase_add_test(tc_core, pow_inf_negative1_nan);
+  tcase_add_test(tc_core, pow_inf_negative2_nan);
+  tcase_add_test(tc_core, pow_inf_positive1_nan);
+  tcase_add_test(tc_core, pow_inf_positive2_nan);
+  tcase_add_test(tc_core, pow_inf_negative1_1);
+  tcase_add_test(tc_core, pow_inf_negative1_2);
+  tcase_add_test(tc_core, pow_inf_negative1_3);
+  tcase_add_test(tc_core, pow_inf_negative1_4);
+  tcase_add_test(tc_core, pow_inf_negative1_5);
+  tcase_add_test(tc_core, pow_inf_negative2_1);
+  tcase_add_test(tc_core, pow_inf_negative2_2);
+  tcase_add_test(tc_core, pow_inf_negative2_3);
+  tcase_add_test(tc_core, pow_inf_negative2_4);
+  tcase_add_test(tc_core, pow_inf_negative2_5);
+  tcase_add_test(tc_core, pow_inf_negative2_6);
+  tcase_add_test(tc_core, pow_inf_negative2_7);
+  tcase_add_test(tc_core, pow_inf_positive1_1);
+  tcase_add_test(tc_core, pow_inf_positive1_2);
+  tcase_add_test(tc_core, pow_inf_positive1_3);
+  tcase_add_test(tc_core, pow_inf_positive1_4);
+  tcase_add_test(tc_core, pow_inf_positive1_5);
+  tcase_add_test(tc_core, pow_inf_positive2_1);
+  tcase_add_test(tc_core, pow_inf_positive2_2);
+  tcase_add_test(tc_core, pow_inf_positive2_3);
+  tcase_add_test(tc_core, pow_inf_positive2_4);
+  tcase_add_test(tc_core, pow_inf_positive2_5);
+  tcase_add_test(tc_core, pow_inf_positive2_6);
+  tcase_add_test(tc_core, pow_inf_positive2_7);
 
   suite_add_tcase(s, tc_core);
 

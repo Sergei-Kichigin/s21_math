@@ -2,8 +2,7 @@
 
 long double s21_pow(double base, double p) {
   long double result = TWO;
-
-  if (p == InFN || p == InFP) {
+  if (result == TWO && (p == InFN || p == InFP)) {
     if (base < MINUS || base > ONE)
       result = (p == InFN ? ZERO : InFP);
     else if (base > MINUS && base < ONE)
@@ -24,9 +23,15 @@ long double s21_pow(double base, double p) {
   if (result == TWO) {
     result = s21_pow_double(base, p);
     if (result > __DBL_MAX__) result = InFP;
-
     if (result < MINUS * __DBL_MAX__) result = InFN;
   }
+  if (p != p) {
+    // if (base == ONE)
+    //   result = base;
+    // else
+    result = p;
+  }
+  if (base != base) result = base;
   return result;
 }
 
