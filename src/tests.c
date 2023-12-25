@@ -155,6 +155,124 @@ START_TEST(abs_inf_negative) {
   ck_assert_int_eq(result, expected);
 }
 
+// FMOD
+
+START_TEST(fmod_positive1) {
+  double input1 = 10000;
+  double input2 = 3.4;
+  double result = s21_fmod(input1, input2);
+  double expected = fmod(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(fmod_positive2) {
+  double input1 = 9.3;
+  double input2 = 3.4;
+  double result = s21_fmod(input1, input2);
+  double expected = fmod(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(fmod_negative1) {
+  double input1 = -10000;
+  double input2 = -3.4;
+  double result = s21_fmod(input1, input2);
+  double expected = fmod(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(fmod_negative2) {
+  double input1 = 9.3;
+  double input2 = -3.4;
+  double result = s21_fmod(input1, input2);
+  double expected = fmod(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(fmod_nan1) {
+  double input1 = NaN;
+  double input2 = 3.4;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
+START_TEST(fmod_nan2) {
+  double input1 = NaN;
+  double input2 = NaN;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
+START_TEST(fmod_nan3) {
+  double input1 = 3.4;
+  double input2 = NaN;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
+START_TEST(fmod_inf_positive1) {
+  double input1 = InFP;
+  double input2 = 3.4;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
+START_TEST(fmod_inf_positive2) {
+  double input1 = InFP;
+  double input2 = InFP;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
+START_TEST(fmod_inf_positive3) {
+  double input1 = 3.4;
+  double input2 = InFP;
+  double result = s21_fmod(input1, input2);
+  double expected = fmod(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(fmod_inf_negative1) {
+  double input1 = InFN;
+  double input2 = 3.4;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
+START_TEST(fmod_inf_negative2) {
+  double input1 = InFN;
+  double input2 = InFN;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
+START_TEST(fmod_zero1) {
+  double input1 = 0;
+  double input2 = 3.3;
+  double result = s21_fmod(input1, input2);
+  double expected = fmod(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(fmod_zero2) {
+  double input1 = 3.3;
+  double input2 = 0;
+  double result = s21_fmod(input1, input2);
+  ck_assert_ldouble_nan(result);
+}
+
+// START_TEST(name_of_test)              // name of test
+// {
+//   int input = InFN;                   // input data
+//   int result = s21_abs(input);        // output our function
+//   int expected = abs(input);          // output math function
+//   ck_assert_int_eq(result, expected); // comparison of results
+// }
+
+// Добавляйте свои тесты как в примере выше
+
+
+
 // ACOS
 START_TEST(acos_nan) {
   double input = NaN;
@@ -1049,6 +1167,28 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, pow_inf_positive2_5);
   tcase_add_test(tc_core, pow_inf_positive2_6);
   tcase_add_test(tc_core, pow_inf_positive2_7);
+
+
+
+
+// Добавляйте свои тесты как в примере выше
+
+  // FMOD
+  tcase_add_test(tc_core, fmod_positive1);
+  tcase_add_test(tc_core, fmod_positive2);
+  tcase_add_test(tc_core, fmod_negative1);
+  tcase_add_test(tc_core, fmod_negative2);
+  tcase_add_test(tc_core, fmod_nan1);
+  tcase_add_test(tc_core, fmod_nan2);
+  tcase_add_test(tc_core, fmod_nan3);
+  tcase_add_test(tc_core, fmod_inf_positive1);
+  tcase_add_test(tc_core, fmod_inf_positive2);
+  tcase_add_test(tc_core, fmod_inf_positive3);
+  tcase_add_test(tc_core, fmod_inf_negative1);
+  tcase_add_test(tc_core, fmod_inf_negative2);
+  tcase_add_test(tc_core, fmod_zero1);
+  tcase_add_test(tc_core, fmod_zero2);
+
 
   suite_add_tcase(s, tc_core);
 
