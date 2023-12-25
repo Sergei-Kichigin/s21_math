@@ -37,6 +37,7 @@ long double s21_atan(double x);
 
 long double s21_exp(double x);
 long double s21_exp_double(double x);
+long double s21_exp_int_neg(long double p);
 
 long double s21_fmod(double x, double y);
 long double s21_truncate(double x);
@@ -45,7 +46,6 @@ long double s21_log(double x);
 
 long double s21_pow(double base, double p);
 long double s21_pow_calculation(double base, long double p);
-long double s21_pow_int(long double base, long double p);
 long double s21_pow_double(double base, double p);
 long double s21_sqrt(double base);
 
