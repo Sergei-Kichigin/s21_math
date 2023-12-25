@@ -2,7 +2,7 @@
 
 long double s21_pow(double base, double p) {
   long double result = TWO;
-  if (result == TWO && (p == InFN || p == InFP)) {
+  if (p == InFN || p == InFP) {
     if (base < MINUS || base > ONE)
       result = (p == InFN ? ZERO : InFP);
     else if (base > MINUS && base < ONE)
