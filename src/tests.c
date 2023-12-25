@@ -167,113 +167,118 @@ START_TEST(abs_inf_negative) {
 
 // EXP
 START_TEST(exp_inf_negative) {
-  int input = InFN;
-  int result = s21_exp(input);
-  int expected = exp(input);
+  double input = InFN;
+  double result = s21_exp(input);
+  double expected = exp(input);
   ck_assert_ldouble_eq(result, expected);
 }
 START_TEST(exp_negative) {
-  int input = -12;
-  int result = s21_exp(input);
-  int expected = exp(input);
+  double input = -12;
+  double result = s21_exp(input);
+  double expected = exp(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 START_TEST(exp_negative_less_one) {
-  int input = -0.01;
-  int result = s21_exp(input);
-  int expected = exp(input);
+  double input = -0.01;
+  double result = s21_exp(input);
+  double expected = exp(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 START_TEST(exp_null) {
-  int input = 0.0;
-  int result = s21_exp(input);
-  int expected = exp(input);
+  double input = 0.0;
+  double result = s21_exp(input);
+  double expected = exp(input);
   ck_assert_ldouble_eq(result, expected);
 }
 START_TEST(exp_positive_less_one) {
-  int input = 0.01;
-  int result = s21_exp(input);
-  int expected = exp(input);
+  double input = 0.01;
+  double result = s21_exp(input);
+  double expected = exp(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 START_TEST(exp_positive_one) {
-  int input = 1.0;
-  int result = s21_exp(input);
-  int expected = exp(input);
+  double input = 1.0;
+  double result = s21_exp(input);
+  double expected = exp(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 START_TEST(exp_positive) {
-  int input = 12.0;
-  int result = s21_exp(input);
-  int expected = exp(input);
+  double input = 12.0;
+  double result = s21_exp(input);
+  double expected = exp(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 START_TEST(exp_positive_max) {
-  int input = 1000;
-  int result = s21_exp(input);
-  int expected = exp(input);
-  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+  double input = 1000;
+  double result = s21_exp(input);
+  double expected = exp(input);
+  ck_assert_ldouble_eq(result, expected);
 }
 START_TEST(exp_inf_positive) {
-  int input = InFP;
-  int result = s21_exp(input);
-  int expected = exp(input);
+  double input = InFP;
+  double result = s21_exp(input);
+  double expected = exp(input);
   ck_assert_ldouble_eq(result, expected);
 }
 START_TEST(exp_nan) {
-  int input = NaN;
-  int result = s21_exp(input);
-  int expected = exp(input);
-  ck_assert_ldouble_eq(result, expected);
+  ck_assert_ldouble_nan(s21_exp(NaN));
+  ck_assert_ldouble_nan(exp(NaN));
+  // double input = NaN;
+  // double result = s21_exp(input);
+  // double expected = exp(input);
+  // ck_assert_ldouble_eq(result, expected);
 }
 // LOG
 START_TEST(log_inf_negative) {
-  int input = InFN;
-  int result = s21_log(input);
-  int expected = log(input);
-  ck_assert_ldouble_eq(result, expected);
+  double input = InFN;
+  double result = s21_log(input);
+  double expected = log(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
 }
 START_TEST(log_negative) {
-  int input = -12;
-  int result = s21_log(input);
-  int expected = log(input);
-  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+  double input = -12;
+  double result = s21_log(input);
+  double expected = log(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
 }
 START_TEST(log_null) {
-  int input = 0.0;
-  int result = s21_log(input);
-  int expected = log(input);
+  double input = 0.0;
+  double result = s21_log(input);
+  double expected = log(input);
   ck_assert_ldouble_eq(result, expected);
 }
 START_TEST(log_positive_less_one) {
-  int input = 0.01;
-  int result = s21_log(input);
-  int expected = log(input);
+  double input = 0.01;
+  double result = s21_log(input);
+  double expected = log(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 START_TEST(log_positive_one) {
-  int input = 1.0;
-  int result = s21_log(input);
-  int expected = log(input);
+  double input = 1.0;
+  double result = s21_log(input);
+  double expected = log(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 START_TEST(log_positive) {
-  int input = 12.0;
-  int result = s21_log(input);
-  int expected = log(input);
+  double input = 12.0;
+  double result = s21_log(input);
+  double expected = log(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 START_TEST(log_inf_positive) {
-  int input = InFP;
-  int result = s21_log(input);
-  int expected = log(input);
+  double input = InFP;
+  double result = s21_log(input);
+  double expected = log(input);
   ck_assert_ldouble_eq(result, expected);
 }
 START_TEST(log_nan) {
-  int input = NaN;
-  int result = s21_log(input);
-  int expected = log(input);
-  ck_assert_ldouble_eq(result, expected);
+  double input = NaN;
+  double result = s21_log(input);
+  double expected = log(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
 }
 
 Suite *my_math_suite(void) {
