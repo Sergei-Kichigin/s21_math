@@ -358,13 +358,150 @@ START_TEST(atan_inf_negative) {
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 
-// START_TEST(name_of_test)              // name of test
-// {
-//   int input = InFN;                   // input data
-//   int result = s21_abs(input);        // output our function
-//   int expected = abs(input);          // output math function
-//   ck_assert_int_eq(result, expected); // comparison of results
-// }
+// COS
+START_TEST(cos_nan) {
+  double input = NaN;
+  double result = s21_cos(input);
+  double expected = cos(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(cos_inf_positive) {
+  double input = InFP;
+  double result = s21_cos(input);
+  double expected = cos(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(cos_positive_big) {
+  double input = 302.8*PI;
+  double result = s21_cos(input);
+  double expected = cos(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(cos_positive) {
+  double input = 3.0*PI/4.0;
+  double result = s21_cos(input);
+  double expected = cos(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(cos_null) {
+  double input = 0.0;
+  double result = s21_cos(input);
+  double expected = cos(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(cos_negative) {
+  double input = -1.5*PI;
+  double result = s21_cos(input);
+  double expected = cos(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(cos_negative_big) {
+  double input = -30.5*PI;
+  double result = s21_cos(input);
+  double expected = cos(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(cos_inf_negative) {
+  double input = InFN;
+  double result = s21_cos(input);
+  double expected = cos(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+// SIN
+START_TEST(sin_nan) {
+  double input = NaN;
+  double result = s21_sin(input);
+  double expected = sin(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(sin_inf_positive) {
+  double input = InFP;
+  double result = s21_sin(input);
+  double expected = sin(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(sin_positive_big) {
+  double input = 5075.8*PI;
+  double result = s21_sin(input);
+  double expected = sin(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(sin_positive) {
+  double input = PI/4.0;
+  double result = s21_sin(input);
+  double expected = sin(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(sin_null) {
+  double input = 0.0;
+  double result = s21_sin(input);
+  double expected = sin(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(sin_negative) {
+  double input = -PI_2/3.0;
+  double result = s21_sin(input);
+  double expected = sin(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(sin_negative_big) {
+  double input = -101.5*PI;
+  double result = s21_sin(input);
+  double expected = sin(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(sin_inf_negative) {
+  double input = InFN;
+  double result = s21_sin(input);
+  double expected = sin(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+// TAN
+START_TEST(tan_nan) {
+  double input = NaN;
+  double result = s21_tan(input);
+  double expected = tan(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(tan_inf_positive) {
+  double input = InFP;
+  double result = s21_tan(input);
+  double expected = tan(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
+START_TEST(tan_inf_negative) {
+  double input = InFN;
+  double result = s21_tan(input);
+  double expected = tan(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
 
 // Добавляйте свои тесты как в примере выше
 
@@ -442,7 +579,31 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, atan_max_negative);
   tcase_add_test(tc_core, atan_inf_negative);
 
-  // Добавляйте свои тесты как в примере выше
+
+  // COS
+  tcase_add_test(tc_core, cos_nan);
+  tcase_add_test(tc_core, cos_inf_positive);
+  tcase_add_test(tc_core, cos_positive_big);
+  tcase_add_test(tc_core, cos_positive);
+  tcase_add_test(tc_core, cos_null);
+  tcase_add_test(tc_core, cos_negative);
+  tcase_add_test(tc_core, cos_negative_big);
+  tcase_add_test(tc_core, cos_inf_negative);
+
+  // SIN
+  tcase_add_test(tc_core, sin_nan);
+  tcase_add_test(tc_core, sin_inf_positive);
+  tcase_add_test(tc_core, sin_positive_big);
+  tcase_add_test(tc_core, sin_positive);
+  tcase_add_test(tc_core, sin_null);
+  tcase_add_test(tc_core, sin_negative);
+  tcase_add_test(tc_core, sin_negative_big);
+  tcase_add_test(tc_core, sin_inf_negative);
+
+  // TAN
+  tcase_add_test(tc_core, tan_nan);
+  tcase_add_test(tc_core, tan_inf_positive);
+  tcase_add_test(tc_core, tan_inf_negative);
 
   suite_add_tcase(s, tc_core);
 
