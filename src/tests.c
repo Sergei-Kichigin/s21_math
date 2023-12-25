@@ -1190,6 +1190,22 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, fmod_zero2);
 
 
+  // FMOD
+  tcase_add_test(tc_core, fmod_positive1);
+  tcase_add_test(tc_core, fmod_positive2);
+  tcase_add_test(tc_core, fmod_negative1);
+  tcase_add_test(tc_core, fmod_negative2);
+  tcase_add_test(tc_core, fmod_nan1);
+  tcase_add_test(tc_core, fmod_nan2);
+  tcase_add_test(tc_core, fmod_nan3);
+  tcase_add_test(tc_core, fmod_inf_positive1);
+  tcase_add_test(tc_core, fmod_inf_positive2);
+  tcase_add_test(tc_core, fmod_inf_positive3);
+  tcase_add_test(tc_core, fmod_inf_negative1);
+  tcase_add_test(tc_core, fmod_inf_negative2);
+  tcase_add_test(tc_core, fmod_zero1);
+  tcase_add_test(tc_core, fmod_zero2);
+
   suite_add_tcase(s, tc_core);
 
   return s;
