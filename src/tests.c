@@ -286,14 +286,13 @@ START_TEST(pow_nan_0) {
   ck_assert_ldouble_nan(result);
   ck_assert_ldouble_nan(expected);
 }
-// START_TEST(pow_nan_1) {
-//   double input1 = 1.0;
-//   double input2 = NaN;
-//   double result = s21_pow(input1, input2);
-//   double expected = pow(input1, input2);
-//   ck_assert_ldouble_nan(result);
-//   ck_assert_ldouble_nan(expected);
-// }
+START_TEST(pow_nan_1) {
+  double input1 = 1.0;
+  double input2 = NaN;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
 START_TEST(pow_nan_2) {
   double input1 = 12;
   double input2 = NaN;
@@ -538,49 +537,17 @@ START_TEST(pow_inf_positive2_7) {
   double expected = pow(input1, input2);
   ck_assert_ldouble_eq(result, expected);
 }
-// START_TEST(log_negative) {
-//   double input = -12;
-//   double result = s21_log(input);
-//   double expected = log(input);
-//   ck_assert_ldouble_nan(result);
-//   ck_assert_ldouble_nan(expected);
-// }
 // START_TEST(log_null) {
 //   double input = 0.0;
 //   double result = s21_log(input);
 //   double expected = log(input);
 //   ck_assert_ldouble_eq(result, expected);
 // }
-// START_TEST(log_positive_less_one) {
-//   double input = 0.01;
-//   double result = s21_log(input);
-//   double expected = log(input);
-//   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
-// }
-// START_TEST(log_positive_one) {
-//   double input = 1.0;
-//   double result = s21_log(input);
-//   double expected = log(input);
-//   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
-// }
 // START_TEST(log_positive) {
 //   double input = 12.0;
 //   double result = s21_log(input);
 //   double expected = log(input);
 //   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
-// }
-// START_TEST(log_inf_positive) {
-//   double input = InFP;
-//   double result = s21_log(input);
-//   double expected = log(input);
-//   ck_assert_ldouble_eq(result, expected);
-// }
-// START_TEST(log_nan) {
-//   double input = NaN;
-//   double result = s21_log(input);
-//   double expected = log(input);
-//   ck_assert_ldouble_nan(result);
-//   ck_assert_ldouble_nan(expected);
 // }
 
 Suite *my_math_suite(void) {
@@ -650,7 +617,7 @@ Suite *my_math_suite(void) {
 
   // POW
   tcase_add_test(tc_core, pow_nan_0);
-  // tcase_add_test(tc_core, pow_nan_1);
+  tcase_add_test(tc_core, pow_nan_1);
   tcase_add_test(tc_core, pow_nan_2);
   tcase_add_test(tc_core, pow_nan_3);
   tcase_add_test(tc_core, pow_inf_1);

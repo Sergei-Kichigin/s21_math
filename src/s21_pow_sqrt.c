@@ -26,10 +26,10 @@ long double s21_pow(double base, double p) {
     if (result < MINUS * __DBL_MAX__) result = InFN;
   }
   if (p != p) {
-    // if (base == ONE)
-    //   result = base;
-    // else
-    result = p;
+    if (base == ONE)
+      result = base;
+    else
+      result = p;
   }
   if (base != base) result = base;
   return result;
