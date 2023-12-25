@@ -1001,13 +1001,105 @@ START_TEST(pow_inf_positive2_7) {
 //   double expected = log(input);
 //   ck_assert_ldouble_eq(result, expected);
 // }
-// START_TEST(log_positive) {
-//   double input = 12.0;
-//   double result = s21_log(input);
-//   double expected = log(input);
-//   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
-// }
-
+START_TEST(pow_positive_base_1) {
+  double input1 = 12.0;
+  double input2 = ZERO;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+START_TEST(pow_positive_base_2) {
+  double input1 = 12.0;
+  double input2 = -12.0;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+START_TEST(pow_positive_base_3) {
+  double input1 = 12.0;
+  double input2 = 1.2;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+START_TEST(pow_positive_base_4) {
+  double input1 = 2.0;
+  double input2 = -999999;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_negative_base_1) {
+  double input1 = -12.0;
+  double input2 = ZERO;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+START_TEST(pow_negative_base_2) {
+  double input1 = -12.0;
+  double input2 = -12.0;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+START_TEST(pow_negative_base_3) {
+  double input1 = -2.0;
+  double input2 = 2.0;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+START_TEST(pow_negative_base_4) {
+  double input1 = -12.0;
+  double input2 = 1.2;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+START_TEST(pow_negative_base_5) {
+  double input1 = -12.0;
+  double input2 = 3;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+START_TEST(pow_zero_base_1) {
+  double input1 = ZERO;
+  double input2 = ZERO;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_zero_base_2) {
+  double input1 = ZERO;
+  double input2 = -12.0;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_zero_base_3) {
+  double input1 = ZERO;
+  double input2 = 12.0;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_max) {
+  double input1 = 9999.0;
+  double input2 = 9999.0;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
+START_TEST(pow_min) {
+  double input1 = -9999;
+  double input2 = 9999.0;
+  double result = s21_pow(input1, input2);
+  double expected = pow(input1, input2);
+  ck_assert_ldouble_eq(result, expected);
+}
 Suite *my_math_suite(void) {
   Suite *s;
   TCase *tc_core;
@@ -1167,6 +1259,20 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, pow_inf_positive2_5);
   tcase_add_test(tc_core, pow_inf_positive2_6);
   tcase_add_test(tc_core, pow_inf_positive2_7);
+  tcase_add_test(tc_core, pow_positive_base_1);
+  tcase_add_test(tc_core, pow_positive_base_2);
+  tcase_add_test(tc_core, pow_positive_base_3);
+  tcase_add_test(tc_core, pow_positive_base_4);
+  tcase_add_test(tc_core, pow_negative_base_1);
+  tcase_add_test(tc_core, pow_negative_base_2);
+  tcase_add_test(tc_core, pow_negative_base_3);
+  tcase_add_test(tc_core, pow_negative_base_4);
+  tcase_add_test(tc_core, pow_negative_base_5);
+  tcase_add_test(tc_core, pow_zero_base_1);
+  tcase_add_test(tc_core, pow_zero_base_2);
+  tcase_add_test(tc_core, pow_zero_base_3);
+  tcase_add_test(tc_core, pow_max);
+  tcase_add_test(tc_core, pow_min);
 
 
 
