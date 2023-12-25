@@ -27,10 +27,6 @@ long double s21_pow(double base, double p) {
   }
   if (p != p) {
     result = (base == ONE ? base : p);
-    // if (base == ONE)
-    //   result = base;
-    // else
-    //   result = p;
   }
   if (base != base) result = base;
   return result;
