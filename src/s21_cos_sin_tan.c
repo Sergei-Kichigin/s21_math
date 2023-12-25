@@ -23,7 +23,6 @@ long double s21_sin(double x) {
     res = s21_sqrt(s21_fabs(ONE - s21_cos(x) * s21_cos(x))) * flag;
   }
   return res;
-
 }
 
 long double s21_tan(double x) {

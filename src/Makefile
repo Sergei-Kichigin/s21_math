@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -std=c11 -fprofile-arcs -ftest-coverage
-LIBS = -lcheck -lpthread -lrt -lsubunit -lm
+LIBS = -lcheck -lpthread -lrt -lm -lsubunit
 DFLAG = -D_POSIX_C_SOURCE=200809L
 
 # Исходные файлы
@@ -20,7 +20,7 @@ all: clang_all $(EXECUTABLE)
 
 # Сборка исполняемого файла
 $(EXECUTABLE): $(OBJ_FILES) $(TEST_OBJ)
-	$(CC) $(CFLAGS) $(DFLAG) $(OBJ_FILES) $(TEST_OBJ) -o $(EXECUTABLE) $(LIBS)
+	$(CC) $(CFLAGS) $(DFLAG) $(OBJ_FILES) $(TEST_OBJ) $(LIBS) -o $(EXECUTABLE) 
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(DFLAG) -c $< -o $@
