@@ -33,7 +33,6 @@ START_TEST(fabs_inf_positive) {
   ck_assert_ldouble_eq(s21_fabs(InFP), fabs(InFP));
 }
 
-// Не совсем ясно как идет сравнение минус бесконечности
 START_TEST(fabs_inf_negative) {
   ck_assert_ldouble_eq(s21_fabs(InFN), fabs(InFN));
 }

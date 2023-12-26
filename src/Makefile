@@ -1,6 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -std=c11 -fprofile-arcs -ftest-coverage -g #-c
 LIBS = -lcheck -lsubunit -lm
+#LIBS = -lm  ＃hope for IMAC
 VALG = valgrind --tool=memcheck  --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=RESULT_VALGRIND.txt ./
 #VALG = valgrind --tool=memcheck  --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt ./
 CPPCH = cppcheck --enable=all --suppress=missingIncludeSystem --suppress=invalidFunctionArg --force 
@@ -44,7 +45,6 @@ test: $(EXECUTABLE)
 coverage: test
 	gcov $(SRC_FILES) $(TEST_SRC)
 
-
 gcov_report: coverage
 	gcovr -r . --html --html-details -o coverage_report.html
 	rm -f *.gc* *.o
@@ -65,5 +65,7 @@ clang_all:
 
 clean:
 	rm -f $(EXECUTABLE) $(LIBRARY) *.gc* *.html *.css *.o
+
+rebuild: clean all
 
 .PHONY: all test clean s21_math.a gcov_report

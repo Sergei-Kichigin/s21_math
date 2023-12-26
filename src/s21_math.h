@@ -52,7 +52,7 @@ long double s21_sqrt(double base);
 long double s21_cos(double x);
 long double s21_sin(double x);
 long double s21_tan(double x);
-double extra_pi_romoval(double* x);
-long double nans_infs(double x);
+double s21_extra_pi_romoval(double* x);
+long double s21_nans_infs(double x);
 
 #endif
