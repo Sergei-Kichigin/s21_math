@@ -1,11 +1,6 @@
 #include <check.h>
-// #define __USE_MISC 
-// #define __USE_XOPEN
-// #define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdlib.h>
-
-
 
 #include "s21_math.h"
 
@@ -34,25 +29,13 @@ START_TEST(fabs_nan_pos) {
   ck_assert_ldouble_nan(fabs(NaNP));
 }
 
-// START_TEST(fabs_inf_positive) {
-//   ck_assert_ldouble_infinite(s21_fabs(InFP));
-//   ck_assert_ldouble_infinite(fabs(InFP));
-// }
-
 START_TEST(fabs_inf_positive) {
   ck_assert_ldouble_eq(s21_fabs(InFP), fabs(InFP));
 }
 
-
 // Не совсем ясно как идет сравнение минус бесконечности
-
-// START_TEST(fabs_inf_negative) {
-//   ck_assert_ldouble_infinite(s21_fabs(InFN));
-//   ck_assert_ldouble_infinite(fabs(InFN));
-// }
-
 START_TEST(fabs_inf_negative) {
-  ck_assert_ldouble_eq(s21_fabs(InFN),fabs(InFN));
+  ck_assert_ldouble_eq(s21_fabs(InFN), fabs(InFN));
 }
 
 // CEIL
@@ -94,25 +77,13 @@ START_TEST(ceil_nan_pos) {
   ck_assert_ldouble_nan(ceil(NaNP));
 }
 
-// START_TEST(ceil_inf_positive) {
-//   ck_assert_ldouble_infinite(s21_ceil(InFP));
-//   ck_assert_ldouble_infinite(ceil(InFP));=
-// }
-
 START_TEST(ceil_inf_positive) {
-  ck_assert_ldouble_eq(s21_ceil(InFP),ceil(InFP));
+  ck_assert_ldouble_eq(s21_ceil(InFP), ceil(InFP));
 }
 
-// Не совсем ясно как идет сравнение минус бесконечности
-
-// START_TEST(ceil_inf_negative) {
-//   ck_assert_ldouble_infinite(s21_ceil(InFN));
-//   ck_assert_ldouble_infinite(ceil(InFN));
-// }
-
 START_TEST(ceil_inf_negative) {
- long double result =s21_ceil(InFN);
-  long double expected=ceil(InFN);
+  long double result = s21_ceil(InFN);
+  long double expected = ceil(InFN);
   ck_assert_ldouble_eq(result, expected);
 }
 
@@ -148,22 +119,11 @@ START_TEST(floor_nan_pos) {
   ck_assert_ldouble_nan(floor(NaNP));
 }
 
-// START_TEST(floor_inf_positive) {
-//   ck_assert_ldouble_infinite(s21_floor(InFP));
-//   ck_assert_ldouble_infinite(floor(InFP));
-// }
-
 START_TEST(floor_inf_positive) {
   double result = s21_floor(InFP);
   double expected = floor(InFP);
   ck_assert_ldouble_eq(result, expected);
 }
-
-// Не совсем ясно как идет сравнение минус бесконечности
-// START_TEST(floor_inf_negative) {
-//   ck_assert_ldouble_infinite(s21_floor(InFN));
-//   ck_assert_ldouble_infinite(floor(InFN));
-// }
 
 START_TEST(floor_inf_negative) {
   double result = s21_floor(InFN);
@@ -200,7 +160,6 @@ START_TEST(abs_nan_pos) {
   ck_assert_int_eq(result, expected);
 }
 
-
 START_TEST(abs_inf_positive) {
   int input = InFP;
   int result = s21_abs(input);
@@ -208,7 +167,6 @@ START_TEST(abs_inf_positive) {
   ck_assert_int_eq(result, expected);
 }
 
-// Не совсем ясно как идет сравнение минус бесконечности
 START_TEST(abs_inf_negative) {
   int input = InFN;
   int result = s21_abs(input);
@@ -217,7 +175,6 @@ START_TEST(abs_inf_negative) {
 }
 
 // FMOD
-
 START_TEST(fmod_positive1) {
   double input1 = 10000;
   double input2 = 3.4;
@@ -321,18 +278,6 @@ START_TEST(fmod_zero2) {
   double result = s21_fmod(input1, input2);
   ck_assert_ldouble_nan(result);
 }
-
-// START_TEST(name_of_test)              // name of test
-// {
-//   int input = InFN;                   // input data
-//   int result = s21_abs(input);        // output our function
-//   int expected = abs(input);          // output math function
-//   ck_assert_int_eq(result, expected); // comparison of results
-// }
-
-// Добавляйте свои тесты как в примере выше
-
-
 
 // ACOS
 START_TEST(acos_nan) {
@@ -563,14 +508,14 @@ START_TEST(cos_inf_positive) {
 }
 
 START_TEST(cos_positive_big) {
-  double input = 302.8*PI;
+  double input = 302.8 * PI;
   double result = s21_cos(input);
   double expected = cos(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 
 START_TEST(cos_positive) {
-  double input = 3.0*PI/4.0;
+  double input = 3.0 * PI / 4.0;
   double result = s21_cos(input);
   double expected = cos(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
@@ -584,14 +529,14 @@ START_TEST(cos_null) {
 }
 
 START_TEST(cos_negative) {
-  double input = -1.5*PI;
+  double input = -1.5 * PI;
   double result = s21_cos(input);
   double expected = cos(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 
 START_TEST(cos_negative_big) {
-  double input = -30.5*PI;
+  double input = -30.5 * PI;
   double result = s21_cos(input);
   double expected = cos(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
@@ -623,14 +568,14 @@ START_TEST(sin_inf_positive) {
 }
 
 START_TEST(sin_positive_big) {
-  double input = 5075.8*PI;
+  double input = 5075.8 * PI;
   double result = s21_sin(input);
   double expected = sin(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 
 START_TEST(sin_positive) {
-  double input = PI/4.0;
+  double input = PI / 4.0;
   double result = s21_sin(input);
   double expected = sin(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
@@ -644,14 +589,14 @@ START_TEST(sin_null) {
 }
 
 START_TEST(sin_negative) {
-  double input = -PI_2/3.0;
+  double input = -PI_2 / 3.0;
   double result = s21_sin(input);
   double expected = sin(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 
 START_TEST(sin_negative_big) {
-  double input = -101.5*PI;
+  double input = -101.5 * PI;
   double result = s21_sin(input);
   double expected = sin(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
@@ -687,18 +632,6 @@ START_TEST(tan_inf_negative) {
   ck_assert_ldouble_nan(expected);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
 START_TEST(tan_norm1) {
   double input = 6;
   double result = s21_tan(input);
@@ -733,74 +666,12 @@ START_TEST(tan_pi) {
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
 
-
 START_TEST(tan_zero) {
   double input = ZERO;
   double result = s21_tan(input);
   double expected = tan(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
-
-
-// START_TEST(tan_inf_almost_half_pi_pos) {
-//   //double input = atan(ONE)*TWO;
-//   double input = M_PI/TWO;
-//   double result = s21_tan(input);
-//   double expected = tan(input);
-//   ck_assert_ldouble_eq(result, expected);
-// }
-
-// START_TEST(tan_inf_almost_half_pi_pos) {
-//   double input = PI/TWO;
-//   double result = s21_tan(input);
-//   double expected = tan(input);
-//   ck_assert_ldouble_eq_tol(result, expected, 1e+16);
-// }
-
-// START_TEST(tan_inf_almost_half_pi_neg) {
-//   double input = MINUS*PI/TWO;
-//   double result = s21_tan(input);
-//   double expected = tan(input);
-//   ck_assert_ldouble_eq_tol(result, expected, 1e+16);
-// }
-
-// START_TEST(tan_inf_half_pi) {
-//   double input = 1.57079632679489661923132169163975144209858469968755;
-//   double result = s21_tan(input);
-//   double expected = tan(input);
-//   ck_assert_ldouble_eq_tol(result, expected, 1e+16);
-// }
-
-// START_TEST(tan_inf_half_pi_neg) {
-//   double input = -1.570796326794896619231321691639;  -16349447600881328.722656 != -16331239353195370.000000
-//   double result = s21_tan(input);
-//   double expected = tan(input);
-//   ck_assert_ldouble_eq_tol(result, expected, 1e+16);
-// }
-
-
-
-
-
-// START_TEST(exp_nan) {
-//   ck_assert_ldouble_nan(s21_exp(NaN));
-//   ck_assert_ldouble_nan(exp(NaN));
-// }
-// START_TEST(tan_norm1) {
-//   double input = 6;
-//   double result = s21_tan(input);
-//   double expected = tan(input);
-//   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
-// }
-// START_TEST(exp_inf_negative) {
-//   double input = InFN;
-//   double result = s21_exp(input);
-//   double expected = exp(input);
-//   ck_assert_ldouble_eq(result, expected);
-// }
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-// Добавляйте свои тесты как в примере выше
 
 // EXP
 START_TEST(exp_inf_negative) {
@@ -1174,12 +1045,7 @@ START_TEST(pow_inf_positive2_7) {
   double expected = pow(input1, input2);
   ck_assert_ldouble_eq(result, expected);
 }
-// START_TEST(log_null) {
-//   double input = 0.0;
-//   double result = s21_log(input);
-//   double expected = log(input);
-//   ck_assert_ldouble_eq(result, expected);
-// }
+
 START_TEST(pow_positive_base_1) {
   double input1 = 12.0;
   double input2 = ZERO;
@@ -1287,8 +1153,6 @@ Suite *my_math_suite(void) {
 
   tc_core = tcase_create("Core");
 
-  // tcase_add_test(tc_core, name of test);  // add test case in suite
-
   // FABS
   tcase_add_test(tc_core, fabs_positive);
   tcase_add_test(tc_core, fabs_negative);
@@ -1388,10 +1252,6 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, tan_norm4);
   tcase_add_test(tc_core, tan_pi);
   tcase_add_test(tc_core, tan_zero);
-  // tcase_add_test(tc_core, tan_inf_almost_half_pi_pos);
-  // tcase_add_test(tc_core, tan_inf_almost_half_pi_neg);
-  // tcase_add_test(tc_core, tan_inf_half_pi);
-  // tcase_add_test(tc_core, tan_inf_half_pi_neg);
 
   // EXP
   tcase_add_test(tc_core, exp_inf_negative);
@@ -1467,7 +1327,6 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, pow_max);
   tcase_add_test(tc_core, pow_min);
 
-// Добавляйте свои тесты как в примере выше
   // FMOD
   tcase_add_test(tc_core, fmod_positive1);
   tcase_add_test(tc_core, fmod_positive2);
@@ -1483,7 +1342,6 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, fmod_inf_negative2);
   tcase_add_test(tc_core, fmod_zero1);
   tcase_add_test(tc_core, fmod_zero2);
-
 
   suite_add_tcase(s, tc_core);
 

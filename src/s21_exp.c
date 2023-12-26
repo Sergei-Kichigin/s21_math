@@ -28,13 +28,12 @@ long double s21_exp_double(double x) {
   return cur;
 }
 
-
 long double s21_exp_int_neg(long double p) {
   long double base = Emathh;  //~2.7182818
   long double result = ONE;
   for (; p != 0;) {
-      result /= base;
-      p++;
+    result /= base;
+    p++;
     if (result < __DBL_DENORM_MIN__) {
       result = ZERO;
       p = 0;
@@ -42,4 +41,3 @@ long double s21_exp_int_neg(long double p) {
   }
   return result;
 }
-

@@ -50,8 +50,8 @@ gcov_report: coverage
 	rm -f *.gc* *.o
 
 valgrind: $(EXECUTABLE)
-	rm -f *.o
 	$(VALG)$(EXECUTABLE)
+	rm -f *.gc* *.o
 
 cpp_check: 
 	$(CPPCH) *.c *.h
