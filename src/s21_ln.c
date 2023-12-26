@@ -1,7 +1,7 @@
 #include "s21_math.h"
 
 long double s21_log(double x) {
-  long double prev = ZERO, cur = ZERO;
+  long double cur = ZERO;
   if (x < ZERO) cur = NaN;
   if (x == ZERO) cur = InFN;
   if (x == InFP) cur = x;
@@ -11,6 +11,7 @@ long double s21_log(double x) {
       x = x / s21_exp(ONE);
     }
     cur = x - ONE;
+    long double prev = ZERO;
     while (s21_fabs(cur - prev) > EPSilon2) {
       prev = cur;
       cur = cur + TWO * (x - s21_exp(cur)) / (x + s21_exp(cur));

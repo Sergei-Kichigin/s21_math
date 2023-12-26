@@ -24,15 +24,25 @@ START_TEST(fabs_nan) {
   ck_assert_ldouble_nan(fabs(NaN));
 }
 
+// START_TEST(fabs_inf_positive) {
+//   ck_assert_ldouble_infinite(s21_fabs(InFP));
+//   ck_assert_ldouble_infinite(fabs(InFP));
+// }
+
 START_TEST(fabs_inf_positive) {
-  ck_assert_ldouble_infinite(s21_fabs(InFP));
-  ck_assert_ldouble_infinite(fabs(InFP));
+  ck_assert_ldouble_eq(s21_fabs(InFP), fabs(InFP));
 }
 
+
 // Не совсем ясно как идет сравнение минус бесконечности
+
+// START_TEST(fabs_inf_negative) {
+//   ck_assert_ldouble_infinite(s21_fabs(InFN));
+//   ck_assert_ldouble_infinite(fabs(InFN));
+// }
+
 START_TEST(fabs_inf_negative) {
-  ck_assert_ldouble_infinite(s21_fabs(InFN));
-  ck_assert_ldouble_infinite(fabs(InFN));
+  ck_assert_ldouble_eq(s21_fabs(InFN),fabs(InFN));
 }
 
 // CEIL
@@ -69,15 +79,26 @@ START_TEST(ceil_nan) {
   ck_assert_ldouble_nan(ceil(NaN));
 }
 
+// START_TEST(ceil_inf_positive) {
+//   ck_assert_ldouble_infinite(s21_ceil(InFP));
+//   ck_assert_ldouble_infinite(ceil(InFP));=
+// }
+
 START_TEST(ceil_inf_positive) {
-  ck_assert_ldouble_infinite(s21_ceil(InFP));
-  ck_assert_ldouble_infinite(ceil(InFP));
+  ck_assert_ldouble_eq(s21_ceil(InFP),ceil(InFP));
 }
 
 // Не совсем ясно как идет сравнение минус бесконечности
+
+// START_TEST(ceil_inf_negative) {
+//   ck_assert_ldouble_infinite(s21_ceil(InFN));
+//   ck_assert_ldouble_infinite(ceil(InFN));
+// }
+
 START_TEST(ceil_inf_negative) {
-  ck_assert_ldouble_infinite(s21_ceil(InFN));
-  ck_assert_ldouble_infinite(ceil(InFN));
+ long double result =s21_ceil(InFN);
+  long double expected=ceil(InFN);
+  ck_assert_ldouble_eq(result, expected);
 }
 
 // FLOOR
@@ -107,15 +128,27 @@ START_TEST(floor_nan) {
   ck_assert_ldouble_nan(floor(NaN));
 }
 
+// START_TEST(floor_inf_positive) {
+//   ck_assert_ldouble_infinite(s21_floor(InFP));
+//   ck_assert_ldouble_infinite(floor(InFP));
+// }
+
 START_TEST(floor_inf_positive) {
-  ck_assert_ldouble_infinite(s21_floor(InFP));
-  ck_assert_ldouble_infinite(floor(InFP));
+  double result = s21_floor(InFP);
+  double expected = floor(InFP);
+  ck_assert_ldouble_eq(result, expected);
 }
 
 // Не совсем ясно как идет сравнение минус бесконечности
+// START_TEST(floor_inf_negative) {
+//   ck_assert_ldouble_infinite(s21_floor(InFN));
+//   ck_assert_ldouble_infinite(floor(InFN));
+// }
+
 START_TEST(floor_inf_negative) {
-  ck_assert_ldouble_infinite(s21_floor(InFN));
-  ck_assert_ldouble_infinite(floor(InFN));
+  double result = s21_floor(InFN);
+  double expected = floor(InFN);
+  ck_assert_ldouble_eq(result, expected);
 }
 
 // ABS
