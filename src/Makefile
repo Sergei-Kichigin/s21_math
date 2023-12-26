@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c11 -fprofile-arcs -ftest-coverage -g #-c
 LIBS = -lcheck -lsubunit -lm
 VALG = valgrind --tool=memcheck  --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=RESULT_VALGRIND.txt ./
 #VALG = valgrind --tool=memcheck  --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt ./
-CPPCH = cppcheck --enable=all --suppress=missingIncludeSystem --suppress=invalidFunctionArg
+CPPCH = cppcheck --enable=all --suppress=missingIncludeSystem --suppress=invalidFunctionArg --force 
 DFLAG = -D_POSIX_C_SOURCE=200809L
 
 SRC_FILES = s21_abs_fabs_ceil_floor.c s21_cos_sin_tan.c s21_exp.c s21_ln.c s21_pow_sqrt.c s21_acos_asin_atan.c s21_fmod.c
