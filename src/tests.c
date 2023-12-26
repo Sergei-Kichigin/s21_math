@@ -1,6 +1,11 @@
 #include <check.h>
+// #define __USE_MISC 
+// #define __USE_XOPEN
+// #define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdlib.h>
+
+
 
 #include "s21_math.h"
 
@@ -22,6 +27,11 @@ START_TEST(fabs_negative) {
 START_TEST(fabs_nan) {
   ck_assert_ldouble_nan(s21_fabs(NaN));
   ck_assert_ldouble_nan(fabs(NaN));
+}
+
+START_TEST(fabs_nan_pos) {
+  ck_assert_ldouble_nan(s21_fabs(NaNP));
+  ck_assert_ldouble_nan(fabs(NaNP));
 }
 
 // START_TEST(fabs_inf_positive) {
@@ -79,6 +89,11 @@ START_TEST(ceil_nan) {
   ck_assert_ldouble_nan(ceil(NaN));
 }
 
+START_TEST(ceil_nan_pos) {
+  ck_assert_ldouble_nan(s21_ceil(NaNP));
+  ck_assert_ldouble_nan(ceil(NaNP));
+}
+
 // START_TEST(ceil_inf_positive) {
 //   ck_assert_ldouble_infinite(s21_ceil(InFP));
 //   ck_assert_ldouble_infinite(ceil(InFP));=
@@ -128,6 +143,11 @@ START_TEST(floor_nan) {
   ck_assert_ldouble_nan(floor(NaN));
 }
 
+START_TEST(floor_nan_pos) {
+  ck_assert_ldouble_nan(s21_floor(NaNP));
+  ck_assert_ldouble_nan(floor(NaNP));
+}
+
 // START_TEST(floor_inf_positive) {
 //   ck_assert_ldouble_infinite(s21_floor(InFP));
 //   ck_assert_ldouble_infinite(floor(InFP));
@@ -172,6 +192,14 @@ START_TEST(abs_nan) {
   int expected = abs(input);
   ck_assert_int_eq(result, expected);
 }
+
+START_TEST(abs_nan_pos) {
+  int input = NaNP;
+  int result = s21_abs(input);
+  int expected = abs(input);
+  ck_assert_int_eq(result, expected);
+}
+
 
 START_TEST(abs_inf_positive) {
   int input = InFP;
@@ -518,6 +546,14 @@ START_TEST(cos_nan) {
   ck_assert_ldouble_nan(expected);
 }
 
+START_TEST(cos_nan_pos) {
+  double input = NaNP;
+  double result = s21_cos(input);
+  double expected = cos(input);
+  ck_assert_ldouble_nan(result);
+  ck_assert_ldouble_nan(expected);
+}
+
 START_TEST(cos_inf_positive) {
   double input = InFP;
   double result = s21_cos(input);
@@ -704,6 +740,15 @@ START_TEST(tan_zero) {
   double expected = tan(input);
   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
 }
+
+
+// START_TEST(tan_inf_almost_half_pi_pos) {
+//   //double input = atan(ONE)*TWO;
+//   double input = M_PI/TWO;
+//   double result = s21_tan(input);
+//   double expected = tan(input);
+//   ck_assert_ldouble_eq(result, expected);
+// }
 
 // START_TEST(tan_inf_almost_half_pi_pos) {
 //   double input = PI/TWO;
@@ -1248,6 +1293,7 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, fabs_positive);
   tcase_add_test(tc_core, fabs_negative);
   tcase_add_test(tc_core, fabs_nan);
+  tcase_add_test(tc_core, fabs_nan_pos);
   tcase_add_test(tc_core, fabs_inf_positive);
   tcase_add_test(tc_core, fabs_inf_negative);
 
@@ -1257,6 +1303,7 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, ceil_positive);
   tcase_add_test(tc_core, ceil_negative);
   tcase_add_test(tc_core, ceil_nan);
+  tcase_add_test(tc_core, ceil_nan_pos);
   tcase_add_test(tc_core, ceil_inf_positive);
   tcase_add_test(tc_core, ceil_inf_negative);
 
@@ -1265,6 +1312,7 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, floor_positive);
   tcase_add_test(tc_core, floor_negative);
   tcase_add_test(tc_core, floor_nan);
+  tcase_add_test(tc_core, floor_nan_pos);
   tcase_add_test(tc_core, floor_inf_positive);
   tcase_add_test(tc_core, floor_inf_negative);
 
@@ -1272,6 +1320,7 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, abs_positive);
   tcase_add_test(tc_core, abs_negative);
   tcase_add_test(tc_core, abs_nan);
+  tcase_add_test(tc_core, abs_nan_pos);
   tcase_add_test(tc_core, abs_inf_positive);
   tcase_add_test(tc_core, abs_inf_negative);
 
@@ -1308,9 +1357,9 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, atan_max_negative);
   tcase_add_test(tc_core, atan_inf_negative);
 
-
   // COS
   tcase_add_test(tc_core, cos_nan);
+  tcase_add_test(tc_core, cos_nan_pos);
   tcase_add_test(tc_core, cos_inf_positive);
   tcase_add_test(tc_core, cos_positive_big);
   tcase_add_test(tc_core, cos_positive);
@@ -1333,7 +1382,6 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, tan_nan);
   tcase_add_test(tc_core, tan_inf_positive);
   tcase_add_test(tc_core, tan_inf_negative);
-
   tcase_add_test(tc_core, tan_norm1);
   tcase_add_test(tc_core, tan_norm2);
   tcase_add_test(tc_core, tan_norm3);
@@ -1419,11 +1467,7 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, pow_max);
   tcase_add_test(tc_core, pow_min);
 
-
-
-
 // Добавляйте свои тесты как в примере выше
-
   // FMOD
   tcase_add_test(tc_core, fmod_positive1);
   tcase_add_test(tc_core, fmod_positive2);

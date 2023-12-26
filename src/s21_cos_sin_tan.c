@@ -6,8 +6,8 @@ long double s21_cos(double x) {
   res = nans_infs(x);
   if (!res) {
     flag = extra_pi_romoval(&x);
-    // for (long double i = 2; step >= EPSilon /*&& step > 0)*/ || /*(step <= EPSilon &&*/ step < 0; i += 2) {  //mathematically correct but not approved by tests
-    for (long double i = 2; step >= EPSilon || step < 0; i += 2) {
+    //for (long double i = 2; step >= EPSilon || step < 0; i += 2) {
+    for (long double i = 2; step >= EPSilon || step <= -EPSilon; i += 2) {  
       res += step;
       step = MINUS * step * x * x / (i * (i - ONE));
     }
