@@ -30,7 +30,7 @@ long double s21_exp_double(double x) {
 
 
 long double s21_exp_int_neg(long double p) {
-  long double base = Emathh  //~2.7182818
+  long double base = Emathh;  //~2.7182818
   long double result = ONE;
   for (; p != 0;) {
       result /= base;

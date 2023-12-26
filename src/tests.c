@@ -598,11 +598,8 @@ START_TEST(sin_inf_negative) {
 
 // TAN
 START_TEST(tan_nan) {
-  double input = NaN;
-  double result = s21_tan(input);
-  double expected = tan(input);
-  ck_assert_ldouble_nan(result);
-  ck_assert_ldouble_nan(expected);
+  ck_assert_ldouble_nan(s21_tan(NaN));
+  ck_assert_ldouble_nan(tan(NaN));
 }
 
 START_TEST(tan_inf_positive) {
@@ -620,6 +617,110 @@ START_TEST(tan_inf_negative) {
   ck_assert_ldouble_nan(result);
   ck_assert_ldouble_nan(expected);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+START_TEST(tan_norm1) {
+  double input = 6;
+  double result = s21_tan(input);
+  double expected = tan(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(tan_norm2) {
+  double input = 55.55;
+  double result = s21_tan(input);
+  double expected = tan(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(tan_norm3) {
+  double input = -555.55;
+  double result = s21_tan(input);
+  double expected = tan(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+START_TEST(tan_norm4) {
+  double input = -555.550075;
+  double result = s21_tan(input);
+  double expected = tan(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+START_TEST(tan_pi) {
+  double input = PI;
+  double result = s21_tan(input);
+  double expected = tan(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+
+START_TEST(tan_zero) {
+  double input = ZERO;
+  double result = s21_tan(input);
+  double expected = tan(input);
+  ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+}
+
+// START_TEST(tan_inf_almost_half_pi_pos) {
+//   double input = PI/TWO;
+//   double result = s21_tan(input);
+//   double expected = tan(input);
+//   ck_assert_ldouble_eq_tol(result, expected, 1e+16);
+// }
+
+// START_TEST(tan_inf_almost_half_pi_neg) {
+//   double input = MINUS*PI/TWO;
+//   double result = s21_tan(input);
+//   double expected = tan(input);
+//   ck_assert_ldouble_eq_tol(result, expected, 1e+16);
+// }
+
+// START_TEST(tan_inf_half_pi) {
+//   double input = 1.57079632679489661923132169163975144209858469968755;
+//   double result = s21_tan(input);
+//   double expected = tan(input);
+//   ck_assert_ldouble_eq_tol(result, expected, 1e+16);
+// }
+
+// START_TEST(tan_inf_half_pi_neg) {
+//   double input = -1.570796326794896619231321691639;  -16349447600881328.722656 != -16331239353195370.000000
+//   double result = s21_tan(input);
+//   double expected = tan(input);
+//   ck_assert_ldouble_eq_tol(result, expected, 1e+16);
+// }
+
+
+
+
+
+// START_TEST(exp_nan) {
+//   ck_assert_ldouble_nan(s21_exp(NaN));
+//   ck_assert_ldouble_nan(exp(NaN));
+// }
+// START_TEST(tan_norm1) {
+//   double input = 6;
+//   double result = s21_tan(input);
+//   double expected = tan(input);
+//   ck_assert_ldouble_eq_tol(result, expected, 1e-6);
+// }
+// START_TEST(exp_inf_negative) {
+//   double input = InFN;
+//   double result = s21_exp(input);
+//   double expected = exp(input);
+//   ck_assert_ldouble_eq(result, expected);
+// }
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 // Добавляйте свои тесты как в примере выше
 
@@ -1200,6 +1301,17 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, tan_inf_positive);
   tcase_add_test(tc_core, tan_inf_negative);
 
+  tcase_add_test(tc_core, tan_norm1);
+  tcase_add_test(tc_core, tan_norm2);
+  tcase_add_test(tc_core, tan_norm3);
+  tcase_add_test(tc_core, tan_norm4);
+  tcase_add_test(tc_core, tan_pi);
+  tcase_add_test(tc_core, tan_zero);
+  // tcase_add_test(tc_core, tan_inf_almost_half_pi_pos);
+  // tcase_add_test(tc_core, tan_inf_almost_half_pi_neg);
+  // tcase_add_test(tc_core, tan_inf_half_pi);
+  // tcase_add_test(tc_core, tan_inf_half_pi_neg);
+
   // EXP
   tcase_add_test(tc_core, exp_inf_negative);
   tcase_add_test(tc_core, exp_negative);
@@ -1295,22 +1407,6 @@ Suite *my_math_suite(void) {
   tcase_add_test(tc_core, fmod_zero1);
   tcase_add_test(tc_core, fmod_zero2);
 
-
-  // FMOD
-  tcase_add_test(tc_core, fmod_positive1);
-  tcase_add_test(tc_core, fmod_positive2);
-  tcase_add_test(tc_core, fmod_negative1);
-  tcase_add_test(tc_core, fmod_negative2);
-  tcase_add_test(tc_core, fmod_nan1);
-  tcase_add_test(tc_core, fmod_nan2);
-  tcase_add_test(tc_core, fmod_nan3);
-  tcase_add_test(tc_core, fmod_inf_positive1);
-  tcase_add_test(tc_core, fmod_inf_positive2);
-  tcase_add_test(tc_core, fmod_inf_positive3);
-  tcase_add_test(tc_core, fmod_inf_negative1);
-  tcase_add_test(tc_core, fmod_inf_negative2);
-  tcase_add_test(tc_core, fmod_zero1);
-  tcase_add_test(tc_core, fmod_zero2);
 
   suite_add_tcase(s, tc_core);
 

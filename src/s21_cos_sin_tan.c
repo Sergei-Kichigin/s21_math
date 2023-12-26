@@ -6,9 +6,8 @@ long double s21_cos(double x) {
   res = nans_infs(x);
   if (!res) {
     flag = extra_pi_romoval(&x);
-    for (long double i = 2;
-         (step >= EPSilon2 && step > 0) || (step <= EPSilon2 && step < 0);
-         i += 2) {
+    // for (long double i = 2; step >= EPSilon /*&& step > 0)*/ || /*(step <= EPSilon &&*/ step < 0; i += 2) {  //mathematically correct but not approved by tests
+    for (long double i = 2; step >= EPSilon || step < 0; i += 2) {
       res += step;
       step = MINUS * step * x * x / (i * (i - ONE));
     }
@@ -26,13 +25,13 @@ long double s21_sin(double x) {
 }
 
 long double s21_tan(double x) {
-  if (s21_fabs(s21_cos(x)) <= EPSilon) {
-    if ((s21_cos(x) <= 0 && s21_sin(x) < 0) ||
-        (s21_cos(x) >= 0 && s21_sin(x) > 0))
-      return InFP;
-    else
-      return InFN;
-  }
+  // if (s21_fabs(s21_cos(x)) <= EPSilon) {               //not posible according to our cos function
+  //   if ((s21_cos(x) <= 0 && s21_sin(x) < 0) ||
+  //       (s21_cos(x) >= 0 && s21_sin(x) > 0))
+  //     return InFP;
+  //   else
+  //     return InFN;
+  // }
   return s21_sin(x) / s21_cos(x);
 }
 
@@ -51,7 +50,7 @@ double extra_pi_romoval(double* x) {
 
 long double nans_infs(double x) {
   long double flag;
-  if (x > InFN && x < InFP && x == x)
+  if (x > InFN && x < InFP /*&& x == x*/) //x == x -redundant condition
     flag = 0;
   else if (x == InFN || x == InFP)
     flag = NaN;

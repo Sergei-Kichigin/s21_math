@@ -1,10 +1,10 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -std=c11 -fprofile-arcs -ftest-coverage
+CFLAGS = -Wall -Wextra -Werror -std=c11 -fprofile-arcs -ftest-coverage 
 LIBS = -lcheck -lsubunit -lm
 
 DFLAG = -D_POSIX_C_SOURCE=200809L
 
-SRC_FILES = s21_abs_fabs_ceil_floor.c s21_cos_sin_tan.c s21_exp.c s21_ln.c s21_pow_sqrt.c s21_acos_asin_atan.c
+SRC_FILES = s21_abs_fabs_ceil_floor.c s21_cos_sin_tan.c s21_exp.c s21_ln.c s21_pow_sqrt.c s21_acos_asin_atan.c s21_fmod.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 # static lib
@@ -34,6 +34,7 @@ $(EXECUTABLE): $(LIBRARY) $(TEST_OBJ)
 
 # run tests
 test: $(EXECUTABLE)
+	rm -f *.o						#new_line
 	./$(EXECUTABLE)
 
 # coverage test
