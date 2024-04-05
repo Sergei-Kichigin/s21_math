@@ -1,62 +1,62 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -std=c11 -fprofile-arcs -ftest-coverage -g #-c
-LIBS = -lcheck -lsubunit -lm
-#LIBS = -lm  ＃hope for IMAC
-VALG = valgrind --tool=memcheck  --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=RESULT_VALGRIND.txt ./
-#VALG = valgrind --tool=memcheck  --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt ./
-CPPCH = cppcheck --enable=all --suppress=missingIncludeSystem --suppress=invalidFunctionArg --force 
-DFLAG = -D_POSIX_C_SOURCE=200809L
+CFLAGS = -Wall -Wextra -Werror -std=c11
+GCOV_FLAGS = -fprofile-arcs -ftest-coverage
+
+LIBS = -lcheck -lm -lsubunit 
+
+VALG = valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=RESULT_VALGRIND.txt ./
+CPPCH = cppcheck --enable=all --suppress=missingIncludeSystem --suppress=invalidFunctionArg --force
 
 SRC_FILES = s21_abs_fabs_ceil_floor.c s21_cos_sin_tan.c s21_exp.c s21_ln.c s21_pow_sqrt.c s21_acos_asin_atan.c s21_fmod.c
-HEAD_FILE = s21_math.h
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
-# static lib
-LIBRARY = $(HEAD_FILE:.h=.a)     #s21_math.a
-# tests
-EXECUTABLE = s21_tests
+HEAD_FILE = s21_math.h
+LIBRARY = $(HEAD_FILE:.h=.a)
 
-# test src
+EXECUTABLE = s21_tests
+GCOV_EXECUTABLE = s21_gcov_tests
+
 TEST_SRC = tests.c
 TEST_OBJ = $(TEST_SRC:.c=.o)
 
-# format src
-SRC_CL=../materials/linters/.clang-format
+SRC_CL = ../materials/linters/.clang-format
 
-all: s21_math.a $(EXECUTABLE) test gcov_report
+all: $(LIBRARY)
 
-# build static lib
-s21_math.a: $(OBJ_FILES)
-	ar rcs $(LIBRARY) $(OBJ_FILES)
+# building static lib
+$(LIBRARY): $(OBJ_FILES) $(HEAD_FILE)
+	ar rcs $@ $^
+	
+# building objects for static lib
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# build tests
-$(EXECUTABLE): $(LIBRARY) $(TEST_OBJ)
-	$(CC) $(CFLAGS) $(DFLAG) $(TEST_OBJ) -o $(EXECUTABLE) -L. -l:$(LIBRARY) $(LIBS)
+# gcc -c test_math.c
+# gcc -c main.c
+# gcc -o unit_test test_math.o main.o ../../src/s21_math.a -lm
+$(EXECUTABLE): $(TEST_SRC) $(LIBRARY)
+	$(CC) $(CFLAGS) $(TEST_SRC) -o $(EXECUTABLE) $(LIBRARY) $(LIBS)
 
-%.o: %.c $(HEAD_FILE)
-	$(CC) $(CFLAGS) $(DFLAG) -c $< -o $@
-
-# run tests
-test: $(EXECUTABLE)
-	rm -f *.o
+test: $(LIBRARY) $(EXECUTABLE)
 	./$(EXECUTABLE)
 
-# coverage test
-coverage: test
-	gcov $(SRC_FILES) $(TEST_SRC)
+# building file for gcov report
+$(GCOV_EXECUTABLE): $(SRC_FILES) $(TEST_SRC)
+	$(CC) $(CFLAGS) $(GCOV_FLAGS) $^ -o $@ $(LIBS)
 
-gcov_report: coverage
-	gcovr -r . --html --html-details -o coverage_report.html
-	rm -f *.gc* *.o
+# building gcov report
+gcov_report: $(GCOV_EXECUTABLE)
+	./$(GCOV_EXECUTABLE)
+	gcov *.gcda
+	gcovr -r . --exclude tests.c --html --html-details -o coverage_report.html
+	rm -f *.gc* $(GCOV_EXECUTABLE)
 
 valgrind: $(EXECUTABLE)
-	$(VALG)$(EXECUTABLE)
-	rm -f *.gc* *.o
+	$(VALG) $(EXECUTABLE)
 
-cpp_check: 
-	$(CPPCH) *.c *.h
+cpp_check:
+	$(CPPCH) $(SRC_FILES) $(HEAD_FILE)
 
-# format code style
 clang_all:
 	cp $(SRC_CL) .clang-format
 	clang-format -i *.c
@@ -64,8 +64,8 @@ clang_all:
 	rm -f .clang-format
 
 clean:
-	rm -f $(EXECUTABLE) $(LIBRARY) *.gc* *.html *.css *.o
+	rm -f $(EXECUTABLE) $(GCOV_EXECUTABLE) $(LIBRARY) *.gc* *.html *.css *.o
 
 rebuild: clean all
 
-.PHONY: all test clean s21_math.a gcov_report
+.PHONY: all test clean gcov_report valgrind cpp_check clang_all
